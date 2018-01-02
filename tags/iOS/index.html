@@ -103,7 +103,7 @@
 <meta name="description" content="无聊的XX十之八九，\n\r而有趣的灵魂万里挑一">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Wei&#39;Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/iOS/index.html">
 <meta property="og:site_name" content="Wei&#39;Blog">
 <meta property="og:description" content="无聊的XX十之八九，\n\r而有趣的灵魂万里挑一">
 <meta name="twitter:card" content="summary">
@@ -137,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/tags/iOS/"/>
 
 
 
 
 
-  <title>Wei'Blog</title>
+  <title>Tag: iOS | Wei'Blog</title>
   
 
 
@@ -168,9 +168,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -263,305 +261,81 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
-    
+
+  
+  
+  
+  <div class="post-block tag">
+
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>iOS<small>Tag</small>
+        </h1>
+      </div>
+
       
-
-  
-
-  
-  
-  
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/07/blog17120701/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WeiJP">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wei'Blog">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
+            <a class="post-title-link" href="/2017/12/07/blog17120701/" itemprop="url">
+              
+                <span itemprop="name">《笔记》iOS deviceToken的获取时机及推送相关</span>
+              
+            </a>
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/07/blog17120701/" itemprop="url">《笔记》iOS deviceToken的获取时机及推送相关</a></h1>
-        
+      </h2>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-07T00:27:50+08:00">
-                2017-12-07
-              </time>
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-12-07T00:27:50+08:00"
+              content="2017-12-07" >
+          12-07
+        </time>
+      </div>
 
-            
+    </header>
+  </article>
 
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS相关/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS相关</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
 
       
         
-          
-            <p>最近几天在做一个新项目，需要用到deviceToken，于是有了以下的问题：<br><strong>1、</strong> deviceToken是什么时机能获取，即</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (void)application:(UIApplication *)application</span><br><span class="line">didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken</span><br><span class="line">// Tells the delegate that the app successfully registered with Apple Push Notification service (APNs).</span><br></pre></td></tr></table></figure>
-<p> 印象中是在点了弹出通知权限的alert的同意键，然后才开始注册apns，然后回调该方法，获取deviceToken。<br> 但是如此是满足不了当前的需求的，我需要无论允许还是拒绝，都能拿到deviceToken，解决方案为：<br> 勾选<strong>Background Modes</strong>中的<strong>remote notification</strong> 和 <strong>background fetch</strong>，即可达到在注册notificationSettings的时候获取到<strong><em>deviceToken</em></strong>，也就是弹权限请求alert的同时。<em>(注：其实只勾选前者即可)</em></p>
-<p><strong>2、</strong> 由上引发思考，上面勾选的两个设置有什么作用？<br>说来惭愧，这俩都是iOS 7就引入的新特性了。。。。一个是后台应用刷新，一个是静默推送（Silent Remote Notifications），网上关于这俩的资源还是很多的，也没啥可说的，照着文档来就行</p>
-<p><strong>3、</strong> 为什么勾选（打开）静默推送就可以不经过用户允许，直接拿到<strong><em>deviceToken</em></strong> 呢，那么是不是可以无视用户的通知权限来进行静默推送呢？于是测试了一下，果然如此，在我点击了拒绝之后，仍然能收到静默推送<br><img src="http://img.blog.csdn.net/20171207001729490?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzY3OTg4Mg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>同时发现，app前台运行时，普通推送也能收到，只是不会展示，猜测后台时也会收到，等回头不忙了，再写个<strong>UNNotificationServiceExtension</strong> 测试一下</p>
-<p>推送作为一个很重要的功能，几乎每次iOS大版本都会有改动，用起来还是谨慎一些为好，多测试一下</p>
 
-          
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
         
+            <a class="post-title-link" href="/2017/11/15/blog17112401/" itemprop="url">
+              
+                <span itemprop="name">记录一下，关于qq空间分享的Icon不显示的问题</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-11-15T16:40:27+08:00"
+              content="2017-11-15" >
+          11-15
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
       
     </div>
-    
-    
-    
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
   
   
   
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/15/blog17112401/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WeiJP">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wei'Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/15/blog17112401/" itemprop="url">记录一下，关于qq空间分享的Icon不显示的问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-15T16:40:27+08:00">
-                2017-11-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS相关/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS相关</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="http://img.blog.csdn.net/20171115163817275?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzY3OTg4Mg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>没用第三方的分享sdk，然后腾讯自己的文档实在是辣眼睛，分享url到QQ好友没有任何问题，分享到QQ空间Icon加载不出来，也怀疑过是不是尺寸的问题，最终发现是不能分享本地图片，必须是图片的URL才行，简直太坑了，官方文档只字不提，而且还给了使用本地图片的Api，下边是从shareSDK的官网上找到的说明：</p>
-<hr>
-<p><strong>QQ空间支持分享文字和图文</strong><br>参数说明<br>title：最多200个字符<br>text：最多600个字符</p>
-<p>QQ空间本身不支持分享本地图片，因此如果想分享本地图片，需要去QQ互联，也就是注册应用的地方，先让你的应用通过审核，然后获取upload_pic这个接口的权限，图片会先上传到ShareSDK的文件服务器，得到连接以后才分享此链接。本地图片更耗流量。</p>
-<hr>
-<p>所以，用第三方分享sdk的小伙伴应该是没有什么问题的。。。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
 
   
 
