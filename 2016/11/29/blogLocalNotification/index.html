@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Bungee:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,推送," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="缘起一个面试：面试官:“本地推送，在杀掉进程以后还可以收到吗？”我（非常肯定的）:“可以的”面试官：“并不能，不信你回去写个demo吧”我：“我写过本地推送，确实是可以的啊”面试官：“如果杀掉进程后，还能收到本地推送，那还要远程推送干什么呢？？？”我：“。。。。。。” 本来无意来计较这件事，但是面试过程中，面试官态度比较强硬、瞧不起人，让人很反感，但还是不说哪家公司了  今天我就写一个Demo，然">
+<meta name="keywords" content="iOS,推送">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于iOS 9之前的本地推送，本地推送杀掉进程后到底能不能收到？">
+<meta property="og:url" content="http://yoursite.com/2016/11/29/blogLocalNotification/index.html">
+<meta property="og:site_name" content="Wei&#39;Blog">
+<meta property="og:description" content="缘起一个面试：面试官:“本地推送，在杀掉进程以后还可以收到吗？”我（非常肯定的）:“可以的”面试官：“并不能，不信你回去写个demo吧”我：“我写过本地推送，确实是可以的啊”面试官：“如果杀掉进程后，还能收到本地推送，那还要远程推送干什么呢？？？”我：“。。。。。。” 本来无意来计较这件事，但是面试过程中，面试官态度比较强硬、瞧不起人，让人很反感，但还是不说哪家公司了  今天我就写一个Demo，然">
+<meta property="og:image" content="http://img.blog.csdn.net/20161129104433799">
+<meta property="og:updated_time" content="2018-01-05T10:58:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于iOS 9之前的本地推送，本地推送杀掉进程后到底能不能收到？">
+<meta name="twitter:description" content="缘起一个面试：面试官:“本地推送，在杀掉进程以后还可以收到吗？”我（非常肯定的）:“可以的”面试官：“并不能，不信你回去写个demo吧”我：“我写过本地推送，确实是可以的啊”面试官：“如果杀掉进程后，还能收到本地推送，那还要远程推送干什么呢？？？”我：“。。。。。。” 本来无意来计较这件事，但是面试过程中，面试官态度比较强硬、瞧不起人，让人很反感，但还是不说哪家公司了  今天我就写一个Demo，然">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20161129104433799">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/29/blogLocalNotification/"/>
+
+
+
+
+
+  <title>关于iOS 9之前的本地推送，本地推送杀掉进程后到底能不能收到？ | Wei'Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wei'Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/29/blogLocalNotification/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WeiJP">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wei'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">关于iOS 9之前的本地推送，本地推送杀掉进程后到底能不能收到？</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-29T11:49:01+08:00">
+                2016-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS相关/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS相关</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="缘起一个面试："><a href="#缘起一个面试：" class="headerlink" title="缘起一个面试："></a>缘起一个面试：</h2><p><strong>面试官</strong>:“本地推送，在杀掉进程以后还可以收到吗？”<br><strong>我</strong>（非常肯定的）:“可以的”<br><strong>面试官</strong>：“并不能，不信你回去写个demo吧”<br><strong>我</strong>：“我写过本地推送，确实是可以的啊”<br><strong>面试官</strong>：“如果杀掉进程后，还能收到本地推送，那还要远程推送干什么呢？？？”<br><strong>我</strong>：“。。。。。。”</p>
+<p>本来无意来计较这件事，但是面试过程中，面试官态度比较强硬、瞧不起人，让人很反感，但还是不说哪家公司了</p>
+<p><img src="http://img.blog.csdn.net/20161129104433799" alt="这个结果根本不意外吧，稍微做过一两年开发的都知道"></p>
+<p><strong>今天我就写一个Demo，然后再唠叨原理</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">// 以下代码只为简单的验证问题，不是教程，诸位凑合看吧</span><br><span class="line">// 注册通知</span><br><span class="line">+ (void)registerPush</span><br><span class="line">&#123;</span><br><span class="line">    UILocalNotification *localNotification = [[UILocalNotification alloc] init];</span><br><span class="line">    </span><br><span class="line">    localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:15];</span><br><span class="line">    localNotification.alertBody = @&quot;I am a LocalNotification!&quot;;</span><br><span class="line">    localNotification.alertAction = @&quot;check&quot;;</span><br><span class="line">    localNotification.hasAction = YES;</span><br><span class="line">    localNotification.applicationIconBadgeNumber = 1;</span><br><span class="line">    </span><br><span class="line">    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> *   iOS 8 以后的版本需要添加推送类型</span><br><span class="line"> *   官方文档：In iOS 8.0 and later, your application must register for user notifications using -[UIApplication registerUserNotificationSettings:] before being able to schedule and present UILocalNotifications</span><br><span class="line"> */</span><br><span class="line">+ (void)registerPushType</span><br><span class="line">&#123;</span><br><span class="line">    if (NSFoundationVersionNumber &gt;= NSFoundationVersionNumber_iOS_8_0) &#123;</span><br><span class="line">        UIUserNotificationType type=UIUserNotificationTypeBadge | UIUserNotificationTypeAlert | UIUserNotificationTypeSound;</span><br><span class="line">        UIUserNotificationSettings *setting=[UIUserNotificationSettings settingsForTypes:type categories:nil];</span><br><span class="line">        [[UIApplication sharedApplication]registerUserNotificationSettings:setting];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 清除角标</span><br><span class="line">+ (void)clearIconBadgeNumber</span><br><span class="line">&#123;</span><br><span class="line">    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="本地推送的机制"><a href="#本地推送的机制" class="headerlink" title="本地推送的机制"></a>本地推送的机制</h2><p>看官方文档<a href="https://developer.apple.com/reference/uikit/uilocalnotification?language=objc" target="_blank" rel="noopener">点击这里</a>，第一句话是：<br>The operating system is responsible for delivering local notifications at their scheduled times; the app does not have to be running for this to happen.Although local notifications are similar to remote notifications in that they are used for displaying alerts, playing sounds, and badging app icons, they are composed and delivered locally and do not require connection with remote servers.<br>明确说明了本地推送是由操作系统负责触发的，不需要App本身，后边还特别注明了尽管与远程推送一样的效果，但是不需要与远程服务器链接。      </p>
+<p><strong>也就是说，无论有无网络连接，App进程是否被杀掉，都可以接收到本地推送。</strong></p>
+<p>管理（or触发?）本地推送的两个方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (void)presentLocalNotificationNow:(UILocalNotification *)notification;</span><br><span class="line"></span><br><span class="line">- (void)scheduleLocalNotification:(UILocalNotification *)notification;  // copies notification</span><br></pre></td></tr></table></figure>
+<p>第一个，直接触发，平时我用的很少。<br>第二个，把本地通知交给操作系统，操作系统根据通知内包含的信息决定何时何地推送这条本地推送。（附：本地推送会被系统拷贝一份副本，便于触发后的释放）</p>
+<p><em>写在最后，做技术的还是少装13，我不知道这位面试官为何会万分肯定在进程被杀掉之后是收不到本地推送的，难道连文档都不看就出来教育别人了么？？？</em></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/推送/" rel="tag"># 推送</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/17/blogCGRectInsetOffset/" rel="next" title="关于CGRectInset和CGRectOffset简单说明">
+                <i class="fa fa-chevron-left"></i> 关于CGRectInset和CGRectOffset简单说明
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/03/blog-misic-FarewellMyConcubine/" rel="prev" title="当爱已成往事 - 张国荣">
+                当爱已成往事 - 张国荣 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="WeiJP" />
+          <p class="site-author-name" itemprop="name">WeiJP</p>
+           
+              <p class="site-description motion-element" itemprop="description">无聊的XX十之八九，而有趣的灵魂万里挑一</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">Kategorien</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/WeiJP" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weijinpeng2012@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/u013679882" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-link"></i>
+                  
+                    
+                      CSDN
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#缘起一个面试："><span class="nav-number">1.</span> <span class="nav-text">缘起一个面试：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地推送的机制"><span class="nav-number">2.</span> <span class="nav-text">本地推送的机制</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WeiJP</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
