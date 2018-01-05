@@ -278,6 +278,444 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/11/03/blogStoryBoardReferences/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WeiJP">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wei'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/11/03/blogStoryBoardReferences/" itemprop="url">关于iOS 9里 Storyboard References出现的问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-03T18:01:59+08:00">
+                2015-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS相关/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS相关</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Storyboard References 是iOS 9 新增的功能，如图:<br><img src="http://img.blog.csdn.net/20151103180808269?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>很实用的一个功能，简化storyboard，看起来清爽一些，如图:</p>
+<p><img src="http://img.blog.csdn.net/20151103180852994?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>但是，一定要注意一件事，编译的Deployment Target 设置为9.0或以上，否则会报如下错误</p>
+<p>Storyboard References cannot be the destinations of relationship segues prior to iOS 9.0</p>
+<p>ps: 我放弃使用了</p>
+<p><em>以上若有错误，欢迎提出意见，感谢</em></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/09/10/blog15091001/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WeiJP">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wei'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/09/10/blog15091001/" itemprop="url">解决 403 Forbidden You don't have permission to access / on this server</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-09-10T16:14:50+08:00">
+                2015-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>碰到一个问题，开启了mac自带的Apache，结果当访问里面的文件夹时，出现  <strong>403 Forbidden You don’t have permission to access / on this server</strong>，网上各种查阅资料，没有解决，原因是，那些解决方案是低版本的apache，而我的电脑是<strong>Apache/2.4.10 (Unix)</strong></p>
+<p>解决方法：</p>
+<ol>
+<li>打开终端，输入 sudo vi /etc/apache2/httpd.conf</li>
+<li>找到<img src="http://img.blog.csdn.net/20150910161116476" alt="这里写图片描述"></li>
+<li>改成2中所示</li>
+</ol>
+<p>自己遇到的问题，记下</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/07/16/blogCppDefine/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WeiJP">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wei'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/07/16/blogCppDefine/" itemprop="url">C++慎用define，以及相关的替代的方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-07-16T22:13:13+08:00">
+                2015-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程语言/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="有哪些问题："><a href="#有哪些问题：" class="headerlink" title="有哪些问题："></a>有哪些问题：</h2><p>在C++中，宏是一个非常好用的预处理功能，同时，它又有一些不好的地方，特别是用#define来实现macros，如果你这样做的话，你肯定要为每个参数都加上小括号，否则你懂得。但是这样仍然存在问题，说一个最近看到的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/*求两个变量中最大的那个*/</span><br><span class="line">#define THE_MAX(a, b) f((a) &gt; (b) ? (a) : (b))</span><br></pre></td></tr></table></figure>
+<p>看着就头疼好吧- -!<br>当你这样用的时候：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">THE_MAX(++a, ++b);</span><br></pre></td></tr></table></figure>
+<p>如果有人这样使用了这个宏，那么很明显的是，a和b总有一个会多累加一次。<br>那先总结一下#define的缺点吧，优点就不说了- -!</p>
+<ol>
+<li>#define不重视scope的概念，或者说没有，一旦被定义，就一直有效，除非在某个地方被＃undef；</li>
+<li>由于1的原因，＃define不提供封装性，也就没有private这种权限之类的；</li>
+<li>由于是预处理命令，所以定义的符号不会进入符号表内，对于调试的过程，很可能会让你头疼；</li>
+</ol>
+<hr>
+<h2 id="define的替代"><a href="#define的替代" class="headerlink" title="define的替代"></a>define的替代</h2><p><strong>1.对于＃define  I_VAR  123</strong></p>
+<pre><code>const int iVar = 123可以替换上面的宏
+有两个需要注意的地方：
+(1) 当定义的是常量指针，需要const两次（ const char* const iVar = &quot;C++&quot;）,第一个const是防止值被改变，第二个const防止地址被改变。
+(2) 当定义到class内时，需要用static来修饰这个变量，防止出现多个实体，代码如下：
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class A &#123;</span><br><span class="line">private:</span><br><span class="line">	int i;</span><br><span class="line">	doubel d;</span><br><span class="line">	static const iVar = 15;</span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>还有一个需要说一下，有些编译器需要你在.cpp文件内去定义这个常量：<code>A::iVar;</code><br>由于声明时已经指定了值，所以定义时不要再去赋值，当然你也可以在声明时不指定任何值，而在定义时在确定这个值。</p>
+<p><strong>2. 对于＃define FUNC(a, b) f((a) &gt; (b) ? (a) : (b))</strong></p>
+<p>可以写一个inline函数来替代：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">template&lt;typename T&gt;</span><br><span class="line">inline void func(const T&amp; a, const T&amp; b)</span><br><span class="line">&#123;</span><br><span class="line">	f(a &gt; b ? a : b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后，我们仍然离不开＃define，但是我们要合理的去使用它，上面文章有不对的地方，欢迎指正，谢谢！</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/05/15/blogTemplateMethodPattern/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -796,7 +1234,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
@@ -807,7 +1245,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">Kategorien</span>
               </a>
             </div>
@@ -818,7 +1256,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>

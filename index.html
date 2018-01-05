@@ -574,6 +574,155 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/24/blogModelPresent/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WeiJP">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wei'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/24/blogModelPresent/" itemprop="url">在modal viewcontroller外点击屏幕dismiss</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-24T11:37:21+08:00">
+                2017-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS相关/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS相关</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="想要的结果："><a href="#想要的结果：" class="headerlink" title="想要的结果："></a>想要的结果：</h1><p><strong>自定义转场动画，弹出modalViewController，然后点击周围可以dismiss掉。</strong></p>
+<p>最终实现的效果忘记截图了，欢迎下载《现在视频》体验一下。。。。。。</p>
+<h1 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h1><p>因为自定义转场动画后，present出VC大小被改变了。<br>点击周围，实际上落点并不在当前的modalViewController内。所以点击手势并不能添加到当前的VC（也就是modalViewController）上。</p>
+<h1 id="实现方法："><a href="#实现方法：" class="headerlink" title="实现方法："></a>实现方法：</h1><p>我的实现方法是：给<strong>self.view.window</strong>添加一个tap，在手势的代理中判断点击是否在controller内。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">let tap = UITapGestureRecognizer(target: self, action: #selector(你的响应方法，实现为空即可))</span><br><span class="line">    override func viewDidAppear(_ animated: Bool) &#123;</span><br><span class="line">        super.viewDidAppear(animated)</span><br><span class="line">        </span><br><span class="line">        tap.delegate = self</span><br><span class="line">        self.view.window?.addGestureRecognizer(tap)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    override func viewWillDisappear(_ animated: Bool) &#123;</span><br><span class="line">        super.viewWillDisappear(animated)</span><br><span class="line">        </span><br><span class="line">        tap.delegate = nil</span><br><span class="line">        self.view.window?.removeGestureRecognizer(tap)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>实际的操作在这里：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">extension XZBasicViewController: UIGestureRecognizerDelegate &#123;</span><br><span class="line">    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -&gt; Bool &#123;</span><br><span class="line">        let point = gestureRecognizer.location(in: self.view)</span><br><span class="line">        if !self.view.point(inside: point, with: nil) &#123;</span><br><span class="line">            self.navigationController?.dismiss(animated: true, completion: &#123;</span><br><span class="line">            &#125;)</span><br><span class="line">            return true</span><br><span class="line">        &#125;</span><br><span class="line">        return false</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>以上有错误，或者有更好的实现方式，欢迎提出，感谢</em></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/03/blog-misic-FarewellMyConcubine/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1040,6 +1189,315 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/31/blogPython161031/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WeiJP">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wei'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/10/31/blogPython161031/" itemprop="url">Python的装饰器和with语法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-31T14:01:17+08:00">
+                2016-10-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python相关/" itemprop="url" rel="index">
+                    <span itemprop="name">Python相关</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;python 2.7&gt;</span><br><span class="line">本文分两部分，第一部分是装饰器，第二部分是with语法，</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@with_connection</span><br><span class="line">def do_some_db_operation():</span><br><span class="line">    db.select(&apos;...&apos;)</span><br><span class="line">    db.update(&apos;...&apos;)</span><br><span class="line">    db.update(&apos;...&apos;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">with db.connection():</span><br><span class="line">    db.select(&apos;...&apos;)</span><br><span class="line">    db.update(&apos;...&apos;)</span><br><span class="line">    db.update(&apos;...&apos;)</span><br></pre></td></tr></table></figure>
+<p>上下两个代码片的作用是一样的，关于数据库操作的，都使用了with语法，只不过上边的使用了装饰器，更加方便了。</p>
+<h2 id="lt-装饰器-gt"><a href="#lt-装饰器-gt" class="headerlink" title="&lt;装饰器&gt;"></a>&lt;装饰器&gt;</h2><p>动态增加代码功能，定义一个who的装饰器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import functools</span><br><span class="line"></span><br><span class="line">def who(func):</span><br><span class="line">	@functools.wraps(func)</span><br><span class="line">    def wrapper(*args, **kw):</span><br><span class="line">        增加的功能&apos;x&apos;代码，比如 print &apos;&lt;我是小菜&gt;&apos;</span><br><span class="line">        return func(*args, **kw)</span><br><span class="line">    return wrapper</span><br></pre></td></tr></table></figure>
+<p>使用时：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@who</span><br><span class="line">def beatDoudou():</span><br><span class="line">    print &apos;打豆豆&apos;</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;我是小菜&gt;</span><br><span class="line">打豆豆</span><br></pre></td></tr></table></figure>
+<p>关于<code>@functools.wraps(fund)</code>的作用是：<br>因为在原函数外加了一层wrapper，所以调用<code>beatDoudou.__name__</code>时，返回的是wrapper，并不是beatDoudou，避免有些依赖函数签名的代码执行出错。<br><strong>带参数的装饰器</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import functools</span><br><span class="line"></span><br><span class="line">def who(name):</span><br><span class="line">    def decorator(func):</span><br><span class="line">        @functools.wraps(func)</span><br><span class="line">        def wrapper(*args, **kw):</span><br><span class="line">            print &apos;&lt;我是%s&gt;&apos; % name</span><br><span class="line">            return func(*args, **kw)</span><br><span class="line">        return wrapper</span><br><span class="line">    return decorator</span><br></pre></td></tr></table></figure>
+<p>使用时：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@who</span><br><span class="line">def beatDoudou(&apos;大鸟&apos;):</span><br><span class="line">    print &apos;打豆豆&apos;</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;我是大鸟&gt;</span><br><span class="line">打豆豆</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;with 语法&gt;</span><br><span class="line">---------</span><br><span class="line"></span><br><span class="line">使用with语法，首先要有上下文管理器（class），这个上下文管理器遵守上下文管理协议，即实现了__enter__() 和 __exit__() 方法，比如（代码看看格式就好）：</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class _ConnectionCtx(object):</span><br><span class="line">	&quot;&quot;&quot;</span><br><span class="line">	with connection():</span><br><span class="line">		pass</span><br><span class="line">		with connection():</span><br><span class="line">			pass</span><br><span class="line">	&quot;&quot;&quot;</span><br><span class="line">	def __enter__(self):</span><br><span class="line">		&quot;&quot;&quot;</span><br><span class="line">		获得一个惰性连接对象</span><br><span class="line">		&quot;&quot;&quot;</span><br><span class="line">		global _db_ctx</span><br><span class="line">		self.should_cleanup = False</span><br><span class="line">		if not _db_ctx.is_init():</span><br><span class="line">			_db_ctx.init()</span><br><span class="line">			self.should_cleanup = True</span><br><span class="line">		return self</span><br><span class="line">	def __exit__(self, exctype, excvalue, traceback):</span><br><span class="line">		&quot;&quot;&quot;</span><br><span class="line">		释放连接对象</span><br><span class="line">		&quot;&quot;&quot;</span><br><span class="line">		global _db_ctx</span><br><span class="line">		if self.should_cleanup:</span><br><span class="line">			_db_ctx.cleanup()</span><br><span class="line">#with _ConnectionCtx():关键句</span><br><span class="line">def with_connection(func):</span><br><span class="line">	&quot;&quot;&quot;</span><br><span class="line">	设计一个装饰器，替换with语法，让代码更优雅</span><br><span class="line">	比如:</span><br><span class="line">        @with_connection</span><br><span class="line">        def foo(*args, **kw):</span><br><span class="line">            f1()</span><br><span class="line">            f2()</span><br><span class="line">            f3()</span><br><span class="line">	&quot;&quot;&quot;</span><br><span class="line">	@functools.wraps(func)</span><br><span class="line">	def _wrapper(*args, **kw):</span><br><span class="line">		with _ConnectionCtx():</span><br><span class="line">			return func(*args, **kw)</span><br><span class="line">	return _wrapper</span><br></pre></td></tr></table></figure>
+<p><strong>with语法作用</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">with db.connection():</span><br><span class="line">    db.select(&apos;...&apos;)</span><br><span class="line">    db.update(&apos;...&apos;)</span><br><span class="line">    db.update(&apos;...&apos;)</span><br></pre></td></tr></table></figure></p>
+<p>三个数据库操作成为语句块，在执行之前，先执行上下文管理器的<strong>enter</strong>函数，即获得数据库连接；在执行完语句块之后，再执行<strong>exit</strong>函数，即释放数据库连接。</p>
+<p><strong>with语句执行过程类似如下：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">以下代码来自[这里](https://www.ibm.com/developerworks/cn/opensource/os-cn-pythonwith/)</span><br><span class="line">context_manager = context_expression</span><br><span class="line">    exit = type(context_manager).__exit__  </span><br><span class="line">    value = type(context_manager).__enter__(context_manager)</span><br><span class="line">    exc = True   # True 表示正常执行，即便有异常也忽略；False 表示重新抛出异常，需要对异常进行处理</span><br><span class="line">    try:</span><br><span class="line">        try:</span><br><span class="line">            target = value  # 如果使用了 as 子句</span><br><span class="line">            with-body     # 执行 with-body</span><br><span class="line">        except:</span><br><span class="line">            # 执行过程中有异常发生</span><br><span class="line">            exc = False</span><br><span class="line">            # 如果 __exit__ 返回 True，则异常被忽略；如果返回 False，则重新抛出异常</span><br><span class="line">            # 由外层代码对异常进行处理</span><br><span class="line">            if not exit(context_manager, *sys.exc_info()):</span><br><span class="line">                raise</span><br><span class="line">    finally:</span><br><span class="line">        # 正常退出，或者通过 statement-body 中的 break/continue/return 语句退出</span><br><span class="line">        # 或者忽略异常退出</span><br><span class="line">        if exc:</span><br><span class="line">            exit(context_manager, None, None, None) </span><br><span class="line">        # 缺省返回 None，None 在布尔上下文中看做是 False</span><br></pre></td></tr></table></figure>
+<p>ps：markdown编辑器有bug吧，有些内容显示不出来，只好改成代码片才可以，所以排版有点乱，sorry</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/09/blogPythonDocx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WeiJP">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wei'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/09/09/blogPythonDocx/" itemprop="url">如何把网页上的图片写入到docx文档</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-09T18:30:33+08:00">
+                2016-09-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python相关/" itemprop="url" rel="index">
+                    <span itemprop="name">Python相关</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>主要是用的是python-docx，安装sudo pip install python-docx，<br>官方文档：<a href="http://python-docx.readthedocs.org/en/latest/" target="_blank" rel="noopener">http://python-docx.readthedocs.org/en/latest/</a></p>
+<p>要将链接对应的图片先下载到内存中，然后使用add_picture方法写入docx文档，具体代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import StringIO</span><br><span class="line">from PIL import Image</span><br><span class="line">from docx.shared import Inches</span><br><span class="line"></span><br><span class="line">request = urllib2.Request(imageUrl])</span><br><span class="line">imageData = urllib2.urlopen(request).read()</span><br><span class="line">image_io = StringIO.StringIO()</span><br><span class="line">image_io.write(imageData)</span><br><span class="line">image_io.seek(0)</span><br><span class="line">im = Image.open(image_io)#通过im.size可以获取图片的尺寸，此处我没有用到</span><br><span class="line">doc_new.add_picture(image_io, width=Inches(6))</span><br></pre></td></tr></table></figure>
+<p>6英寸的宽度正好是docx文档内容的宽度<br>刚接触python，好神奇</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/02/23/blogALAssetPropertyAssetURL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1357,444 +1815,6 @@ __block UIImage *returnValue = nil;
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/11/03/blogStoryBoardReferences/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WeiJP">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wei'Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/11/03/blogStoryBoardReferences/" itemprop="url">关于iOS 9里 Storyboard References出现的问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-03T18:01:59+08:00">
-                2015-11-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS相关/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS相关</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Storyboard References 是iOS 9 新增的功能，如图:<br><img src="http://img.blog.csdn.net/20151103180808269?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
-<p>很实用的一个功能，简化storyboard，看起来清爽一些，如图:</p>
-<p><img src="http://img.blog.csdn.net/20151103180852994?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
-<p>但是，一定要注意一件事，编译的Deployment Target 设置为9.0或以上，否则会报如下错误</p>
-<p>Storyboard References cannot be the destinations of relationship segues prior to iOS 9.0</p>
-<p>ps: 我放弃使用了</p>
-<p><em>以上若有错误，欢迎提出意见，感谢</em></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/09/10/blog15091001/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WeiJP">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wei'Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/09/10/blog15091001/" itemprop="url">解决 403 Forbidden You don't have permission to access / on this server</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-09-10T16:14:50+08:00">
-                2015-09-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>碰到一个问题，开启了mac自带的Apache，结果当访问里面的文件夹时，出现  <strong>403 Forbidden You don’t have permission to access / on this server</strong>，网上各种查阅资料，没有解决，原因是，那些解决方案是低版本的apache，而我的电脑是<strong>Apache/2.4.10 (Unix)</strong></p>
-<p>解决方法：</p>
-<ol>
-<li>打开终端，输入 sudo vi /etc/apache2/httpd.conf</li>
-<li>找到<img src="http://img.blog.csdn.net/20150910161116476" alt="这里写图片描述"></li>
-<li>改成2中所示</li>
-</ol>
-<p>自己遇到的问题，记下</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/07/16/blogCppDefine/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WeiJP">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wei'Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/07/16/blogCppDefine/" itemprop="url">C++慎用define，以及相关的替代的方法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-07-16T22:13:13+08:00">
-                2015-07-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/编程语言/" itemprop="url" rel="index">
-                    <span itemprop="name">编程语言</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="有哪些问题："><a href="#有哪些问题：" class="headerlink" title="有哪些问题："></a>有哪些问题：</h2><p>在C++中，宏是一个非常好用的预处理功能，同时，它又有一些不好的地方，特别是用#define来实现macros，如果你这样做的话，你肯定要为每个参数都加上小括号，否则你懂得。但是这样仍然存在问题，说一个最近看到的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/*求两个变量中最大的那个*/</span><br><span class="line">#define THE_MAX(a, b) f((a) &gt; (b) ? (a) : (b))</span><br></pre></td></tr></table></figure>
-<p>看着就头疼好吧- -!<br>当你这样用的时候：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">THE_MAX(++a, ++b);</span><br></pre></td></tr></table></figure>
-<p>如果有人这样使用了这个宏，那么很明显的是，a和b总有一个会多累加一次。<br>那先总结一下#define的缺点吧，优点就不说了- -!</p>
-<ol>
-<li>#define不重视scope的概念，或者说没有，一旦被定义，就一直有效，除非在某个地方被＃undef；</li>
-<li>由于1的原因，＃define不提供封装性，也就没有private这种权限之类的；</li>
-<li>由于是预处理命令，所以定义的符号不会进入符号表内，对于调试的过程，很可能会让你头疼；</li>
-</ol>
-<hr>
-<h2 id="define的替代"><a href="#define的替代" class="headerlink" title="define的替代"></a>define的替代</h2><p><strong>1.对于＃define  I_VAR  123</strong></p>
-<pre><code>const int iVar = 123可以替换上面的宏
-有两个需要注意的地方：
-(1) 当定义的是常量指针，需要const两次（ const char* const iVar = &quot;C++&quot;）,第一个const是防止值被改变，第二个const防止地址被改变。
-(2) 当定义到class内时，需要用static来修饰这个变量，防止出现多个实体，代码如下：
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class A &#123;</span><br><span class="line">private:</span><br><span class="line">	int i;</span><br><span class="line">	doubel d;</span><br><span class="line">	static const iVar = 15;</span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>还有一个需要说一下，有些编译器需要你在.cpp文件内去定义这个常量：<code>A::iVar;</code><br>由于声明时已经指定了值，所以定义时不要再去赋值，当然你也可以在声明时不指定任何值，而在定义时在确定这个值。</p>
-<p><strong>2. 对于＃define FUNC(a, b) f((a) &gt; (b) ? (a) : (b))</strong></p>
-<p>可以写一个inline函数来替代：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">template&lt;typename T&gt;</span><br><span class="line">inline void func(const T&amp; a, const T&amp; b)</span><br><span class="line">&#123;</span><br><span class="line">	f(a &gt; b ? a : b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>最后，我们仍然离不开＃define，但是我们要合理的去使用它，上面文章有不对的地方，欢迎指正，谢谢！</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1845,7 +1865,7 @@ __block UIImage *returnValue = nil;
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
@@ -1856,7 +1876,7 @@ __block UIImage *returnValue = nil;
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">Kategorien</span>
               </a>
             </div>
@@ -1867,7 +1887,7 @@ __block UIImage *returnValue = nil;
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>
