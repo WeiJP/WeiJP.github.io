@@ -84,7 +84,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="音乐,张国荣," />
+  <meta name="keywords" content="C++,宏定义," />
 
 
 
@@ -100,19 +100,17 @@
 
 
 
-<meta name="description" content="在youtube上偶然间听到的，歌好听，mv也好看，非常非常经典的电影，如果有缘看到这个博客，建议去看《霸王别姬》 mv地址（需翻墙） mv地址（不需翻墙）  Song: 當愛已成往事Artist:  張國榮 | Leslie CheungMain theme of Farewell My Concubine (  霸王別姬) (1993) by Chen Kaige 當愛已成往事 往事不要再提">
-<meta name="keywords" content="音乐,张国荣">
+<meta name="description" content="有哪些问题：在C++中，宏是一个非常好用的预处理功能，同时，它又有一些不好的地方，特别是用#define来实现macros，如果你这样做的话，你肯定要为每个参数都加上小括号，否则你懂得。但是这样仍然存在问题，说一个最近看到的例子： 12/*求两个变量中最大的那个*/#define THE_MAX(a, b) f((a) &amp;gt; (b) ? (a) : (b)) 看着就头疼好吧- -!当你这样用的">
+<meta name="keywords" content="C++,宏定义">
 <meta property="og:type" content="article">
-<meta property="og:title" content="当爱已成往事 - 张国荣">
-<meta property="og:url" content="http://yoursite.com/2017/07/03/blog-misic-FarewellMyConcubine/index.html">
+<meta property="og:title" content="C++慎用define，以及相关的替代的方法">
+<meta property="og:url" content="http://yoursite.com/2015/07/16/blogCppDefine/index.html">
 <meta property="og:site_name" content="Wei&#39;Blog">
-<meta property="og:description" content="在youtube上偶然间听到的，歌好听，mv也好看，非常非常经典的电影，如果有缘看到这个博客，建议去看《霸王别姬》 mv地址（需翻墙） mv地址（不需翻墙）  Song: 當愛已成往事Artist:  張國榮 | Leslie CheungMain theme of Farewell My Concubine (  霸王別姬) (1993) by Chen Kaige 當愛已成往事 往事不要再提">
-<meta property="og:image" content="http://yoursite.com/2017/07/03/blog-misic-FarewellMyConcubine/mv1.png">
-<meta property="og:updated_time" content="2018-01-03T03:24:26.000Z">
+<meta property="og:description" content="有哪些问题：在C++中，宏是一个非常好用的预处理功能，同时，它又有一些不好的地方，特别是用#define来实现macros，如果你这样做的话，你肯定要为每个参数都加上小括号，否则你懂得。但是这样仍然存在问题，说一个最近看到的例子： 12/*求两个变量中最大的那个*/#define THE_MAX(a, b) f((a) &amp;gt; (b) ? (a) : (b)) 看着就头疼好吧- -!当你这样用的">
+<meta property="og:updated_time" content="2018-01-05T09:42:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="当爱已成往事 - 张国荣">
-<meta name="twitter:description" content="在youtube上偶然间听到的，歌好听，mv也好看，非常非常经典的电影，如果有缘看到这个博客，建议去看《霸王别姬》 mv地址（需翻墙） mv地址（不需翻墙）  Song: 當愛已成往事Artist:  張國榮 | Leslie CheungMain theme of Farewell My Concubine (  霸王別姬) (1993) by Chen Kaige 當愛已成往事 往事不要再提">
-<meta name="twitter:image" content="http://yoursite.com/2017/07/03/blog-misic-FarewellMyConcubine/mv1.png">
+<meta name="twitter:title" content="C++慎用define，以及相关的替代的方法">
+<meta name="twitter:description" content="有哪些问题：在C++中，宏是一个非常好用的预处理功能，同时，它又有一些不好的地方，特别是用#define来实现macros，如果你这样做的话，你肯定要为每个参数都加上小括号，否则你懂得。但是这样仍然存在问题，说一个最近看到的例子： 12/*求两个变量中最大的那个*/#define THE_MAX(a, b) f((a) &amp;gt; (b) ? (a) : (b)) 看着就头疼好吧- -!当你这样用的">
 
 
 
@@ -141,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/03/blog-misic-FarewellMyConcubine/"/>
+  <link rel="canonical" href="http://yoursite.com/2015/07/16/blogCppDefine/"/>
 
 
 
 
 
-  <title>当爱已成往事 - 张国荣 | Wei'Blog</title>
+  <title>C++慎用define，以及相关的替代的方法 | Wei'Blog</title>
   
 
 
@@ -280,7 +278,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/03/blog-misic-FarewellMyConcubine/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/07/16/blogCppDefine/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WeiJP">
@@ -297,7 +295,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">当爱已成往事 - 张国荣</h1>
+          <h1 class="post-title" itemprop="name headline">C++慎用define，以及相关的替代的方法</h1>
         
 
         <div class="post-meta">
@@ -309,8 +307,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-03T10:50:34+08:00">
-                2017-07-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-07-16T22:13:13+08:00">
+                2015-07-16
               </time>
             
 
@@ -332,8 +330,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Favorite-MV/" itemprop="url" rel="index">
-                    <span itemprop="name">Favorite MV</span>
+                  <a href="/categories/编程语言/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
                   </a>
                 </span>
 
@@ -369,16 +367,28 @@
       
 
       
-        <p><strong>在youtube上偶然间听到的，歌好听，mv也好看，非常非常经典的电影，如果有缘看到这个博客，建议去看《霸王别姬》</strong></p>
-<p><em><a href="https://www.youtube.com/watch?v=0kA7sSBH93o&amp;list=RD0kA7sSBH93o&amp;t=259" title="Farewell my concubine" target="_blank" rel="noopener">mv地址（需翻墙）</a></em></p>
-<p><em><a href="https://www.bilibili.com/video/av11786772/" title="Farewell my concubine" target="_blank" rel="noopener">mv地址（不需翻墙）</a></em></p>
-<img src="/2017/07/03/blog-misic-FarewellMyConcubine/mv1.png">
-<p>Song: 當愛已成往事<br>Artist:  張國榮 | Leslie Cheung<br>Main theme of Farewell My Concubine (  霸王別姬) (1993) by Chen Kaige</p>
-<p>當愛已成往事</p>
-<p>往事不要再提 人生已多風雨 縱然記憶抹不去 愛與恨都還在心裡<br>真的要斷了過去 讓明天好好繼續 你就不要再苦苦追問我的消息<br>愛情它是個難題 讓人目眩神迷 忘了痛或許可以 忘了你卻太不容易<br>你不曾真的離去 你始終在我心裡 我對你仍有愛意 我對自己無能為力<br>因為我仍有夢 依然將你放在我心中 總是容易被往事打動 總是為了你心痛<br>別流連歲月中 我無意的柔情萬種 不要問我是否再相逢 不要管我是否言不由衷<br>為何你不懂 只要有愛就有痛 有一天你會知道 人生沒有我並不會不同<br>人生已經太匆匆 我好害怕總是淚眼朦朧 忘了我就沒有痛 將往事留在風中</p>
-<p>~間奏~</p>
-<p>因為我仍有夢 依然將你放在我心中 總是容易被往事打動 總是為了你心痛<br>別流連歲月中 我無意的柔情萬種 不要問我是否再相逢 不要管我是否言不由衷<br>為何你不懂 只要有愛就有痛 有一天你會知道 人生沒有我並不會不同<br>人生已經太匆匆 我好害怕總是淚眼朦朧 忘了我就沒有痛 將往事留在風中</p>
-<p>為何你不懂 只要有愛就有痛 有一天你會知道 人生沒有我並不會不同<br>人生已經太匆匆 我好害怕總是淚眼朦朧 忘了我就沒有痛 將往事留在風中</p>
+        <h2 id="有哪些问题："><a href="#有哪些问题：" class="headerlink" title="有哪些问题："></a>有哪些问题：</h2><p>在C++中，宏是一个非常好用的预处理功能，同时，它又有一些不好的地方，特别是用#define来实现macros，如果你这样做的话，你肯定要为每个参数都加上小括号，否则你懂得。但是这样仍然存在问题，说一个最近看到的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/*求两个变量中最大的那个*/</span><br><span class="line">#define THE_MAX(a, b) f((a) &gt; (b) ? (a) : (b))</span><br></pre></td></tr></table></figure>
+<p>看着就头疼好吧- -!<br>当你这样用的时候：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">THE_MAX(++a, ++b);</span><br></pre></td></tr></table></figure>
+<p>如果有人这样使用了这个宏，那么很明显的是，a和b总有一个会多累加一次。<br>那先总结一下#define的缺点吧，优点就不说了- -!</p>
+<ol>
+<li>#define不重视scope的概念，或者说没有，一旦被定义，就一直有效，除非在某个地方被＃undef；</li>
+<li>由于1的原因，＃define不提供封装性，也就没有private这种权限之类的；</li>
+<li>由于是预处理命令，所以定义的符号不会进入符号表内，对于调试的过程，很可能会让你头疼；</li>
+</ol>
+<hr>
+<h2 id="define的替代"><a href="#define的替代" class="headerlink" title="define的替代"></a>define的替代</h2><p><strong>1.对于＃define  I_VAR  123</strong></p>
+<pre><code>const int iVar = 123可以替换上面的宏
+有两个需要注意的地方：
+(1) 当定义的是常量指针，需要const两次（ const char* const iVar = &quot;C++&quot;）,第一个const是防止值被改变，第二个const防止地址被改变。
+(2) 当定义到class内时，需要用static来修饰这个变量，防止出现多个实体，代码如下：
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class A &#123;</span><br><span class="line">private:</span><br><span class="line">	int i;</span><br><span class="line">	doubel d;</span><br><span class="line">	static const iVar = 15;</span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>还有一个需要说一下，有些编译器需要你在.cpp文件内去定义这个常量：<code>A::iVar;</code><br>由于声明时已经指定了值，所以定义时不要再去赋值，当然你也可以在声明时不指定任何值，而在定义时在确定这个值。</p>
+<p><strong>2. 对于＃define FUNC(a, b) f((a) &gt; (b) ? (a) : (b))</strong></p>
+<p>可以写一个inline函数来替代：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">template&lt;typename T&gt;</span><br><span class="line">inline void func(const T&amp; a, const T&amp; b)</span><br><span class="line">&#123;</span><br><span class="line">	f(a &gt; b ? a : b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后，我们仍然离不开＃define，但是我们要合理的去使用它，上面文章有不对的地方，欢迎指正，谢谢！</p>
 
       
     </div>
@@ -396,9 +406,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/音乐/" rel="tag"># 音乐</a>
+            <a href="/tags/C/" rel="tag"># C++</a>
           
-            <a href="/tags/张国荣/" rel="tag"># 张国荣</a>
+            <a href="/tags/宏定义/" rel="tag"># 宏定义</a>
           
         </div>
       
@@ -411,8 +421,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/07/16/blogCppDefine/" rel="next" title="C++慎用define，以及相关的替代的方法">
-                <i class="fa fa-chevron-left"></i> C++慎用define，以及相关的替代的方法
+              <a href="/2015/05/15/blogTemplateMethodPattern/" rel="next" title="<笔记> 模版方法模式">
+                <i class="fa fa-chevron-left"></i> <笔记> 模版方法模式
               </a>
             
           </div>
@@ -421,8 +431,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/15/blog17112401/" rel="prev" title="记录一下，关于qq空间分享的Icon不显示的问题">
-                记录一下，关于qq空间分享的Icon不显示的问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/03/blog-misic-FarewellMyConcubine/" rel="prev" title="当爱已成往事 - 张国荣">
+                当爱已成往事 - 张国荣 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -475,8 +485,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -573,6 +592,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#有哪些问题："><span class="nav-number">1.</span> <span class="nav-text">有哪些问题：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#define的替代"><span class="nav-number">2.</span> <span class="nav-text">define的替代</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

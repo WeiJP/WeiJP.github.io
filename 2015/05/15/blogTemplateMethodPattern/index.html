@@ -84,7 +84,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="C++,模板方法模式," />
 
 
 
@@ -100,15 +100,25 @@
 
 
 
-<meta name="description" content="无聊的XX十之八九，而有趣的灵魂万里挑一">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Wei&#39;Blog">
-<meta property="og:url" content="http://yoursite.com/categories/Favorite-MV/index.html">
+<meta name="description" content="以前做的ppt,直接截图吧，总共7张，貌似还是很好理解的        有错误或意见欢迎指出，感谢">
+<meta name="keywords" content="C++,模板方法模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="&lt;笔记&gt; 模版方法模式">
+<meta property="og:url" content="http://yoursite.com/2015/05/15/blogTemplateMethodPattern/index.html">
 <meta property="og:site_name" content="Wei&#39;Blog">
-<meta property="og:description" content="无聊的XX十之八九，而有趣的灵魂万里挑一">
+<meta property="og:description" content="以前做的ppt,直接截图吧，总共7张，貌似还是很好理解的        有错误或意见欢迎指出，感谢">
+<meta property="og:image" content="http://yoursite.com/2015/05/15/blogTemplateMethodPattern/TemplateMethodPattern1.jpg">
+<meta property="og:image" content="http://yoursite.com/2015/05/15/blogTemplateMethodPattern/TemplateMethodPattern2.jpg">
+<meta property="og:image" content="http://yoursite.com/2015/05/15/blogTemplateMethodPattern/TemplateMethodPattern3.jpg">
+<meta property="og:image" content="http://yoursite.com/2015/05/15/blogTemplateMethodPattern/TemplateMethodPattern4.jpg">
+<meta property="og:image" content="http://yoursite.com/2015/05/15/blogTemplateMethodPattern/TemplateMethodPattern5.jpg">
+<meta property="og:image" content="http://yoursite.com/2015/05/15/blogTemplateMethodPattern/TemplateMethodPattern6.jpg">
+<meta property="og:image" content="http://yoursite.com/2015/05/15/blogTemplateMethodPattern/TemplateMethodPattern7.jpg">
+<meta property="og:updated_time" content="2018-01-05T09:33:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wei&#39;Blog">
-<meta name="twitter:description" content="无聊的XX十之八九，而有趣的灵魂万里挑一">
+<meta name="twitter:title" content="&lt;笔记&gt; 模版方法模式">
+<meta name="twitter:description" content="以前做的ppt,直接截图吧，总共7张，貌似还是很好理解的        有错误或意见欢迎指出，感谢">
+<meta name="twitter:image" content="http://yoursite.com/2015/05/15/blogTemplateMethodPattern/TemplateMethodPattern1.jpg">
 
 
 
@@ -137,13 +147,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/Favorite-MV/"/>
+  <link rel="canonical" href="http://yoursite.com/2015/05/15/blogTemplateMethodPattern/"/>
 
 
 
 
 
-  <title>Category: Favorite MV | Wei'Blog</title>
+  <title><笔记> 模版方法模式 | Wei'Blog</title>
   
 
 
@@ -168,7 +178,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -262,55 +272,183 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Favorite MV<small>Category</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/05/15/blogTemplateMethodPattern/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WeiJP">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wei'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/07/03/blog-misic-FarewellMyConcubine/" itemprop="url">
-              
-                <span itemprop="name">当爱已成往事 - 张国荣</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline"><笔记> 模版方法模式</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-03T10:50:34+08:00"
-              content="2017-07-03" >
-          07-03
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-05-15T01:03:51+08:00">
+                2015-05-15
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>以前做的ppt,直接截图吧，总共7张，貌似还是很好理解的</p>
+<img src="/2015/05/15/blogTemplateMethodPattern/TemplateMethodPattern1.jpg">
+<img src="/2015/05/15/blogTemplateMethodPattern/TemplateMethodPattern2.jpg">
+<img src="/2015/05/15/blogTemplateMethodPattern/TemplateMethodPattern3.jpg">
+<img src="/2015/05/15/blogTemplateMethodPattern/TemplateMethodPattern4.jpg">
+<img src="/2015/05/15/blogTemplateMethodPattern/TemplateMethodPattern5.jpg">
+<img src="/2015/05/15/blogTemplateMethodPattern/TemplateMethodPattern6.jpg">
+<img src="/2015/05/15/blogTemplateMethodPattern/TemplateMethodPattern7.jpg">
+<p><em>有错误或意见欢迎指出，感谢</em></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+            <a href="/tags/模板方法模式/" rel="tag"># 模板方法模式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/04/10/blogStrategyPattern/" rel="next" title="策略模式（附C++代码实现）">
+                <i class="fa fa-chevron-left"></i> 策略模式（附C++代码实现）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/16/blogCppDefine/" rel="prev" title="C++慎用define，以及相关的替代的方法">
+                C++慎用define，以及相关的替代的方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -318,6 +456,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -570,10 +712,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
