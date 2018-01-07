@@ -84,7 +84,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS," />
+  <meta name="keywords" content="字符串查找," />
 
 
 
@@ -100,20 +100,17 @@
 
 
 
-<meta name="description" content="Storyboard References 是iOS 9 新增的功能，如图: 很实用的一个功能，简化storyboard，看起来清爽一些，如图:  但是，一定要注意一件事，编译的Deployment Target 设置为9.0或以上，否则会报如下错误 Storyboard References cannot be the destinations of relationship segues pr">
-<meta name="keywords" content="iOS">
+<meta name="description" content="这是一种类似于KMP但是更高效一点、也更简单一些的字符串查找算法，大体的思路是从右往左扫描，例如在txt = ABCBCDCDE中查找模式串pat = BCD， 12ABCBCDCDEBCD 从右往左，第一个比较的字符是 C 和 D ，不匹配，C 在 BCD 里出现的所有位置中最靠右是 1，那么 BCD 右移 1 位，比较 B 和 D ，12ABCBCDCDE BCD 不匹配，B 在 BCD里出现">
+<meta name="keywords" content="字符串查找">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于iOS 9里 Storyboard References出现的问题">
-<meta property="og:url" content="http://yoursite.com/2015/11/03/blogStoryBoardReferences/index.html">
+<meta property="og:title" content="Boyer-Moore字符串查找算法">
+<meta property="og:url" content="http://yoursite.com/2017/03/26/blogBoyerMoore/index.html">
 <meta property="og:site_name" content="Wei&#39;Blog">
-<meta property="og:description" content="Storyboard References 是iOS 9 新增的功能，如图: 很实用的一个功能，简化storyboard，看起来清爽一些，如图:  但是，一定要注意一件事，编译的Deployment Target 设置为9.0或以上，否则会报如下错误 Storyboard References cannot be the destinations of relationship segues pr">
-<meta property="og:image" content="http://img.blog.csdn.net/20151103180808269?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20151103180852994?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:updated_time" content="2018-01-05T10:22:46.000Z">
+<meta property="og:description" content="这是一种类似于KMP但是更高效一点、也更简单一些的字符串查找算法，大体的思路是从右往左扫描，例如在txt = ABCBCDCDE中查找模式串pat = BCD， 12ABCBCDCDEBCD 从右往左，第一个比较的字符是 C 和 D ，不匹配，C 在 BCD 里出现的所有位置中最靠右是 1，那么 BCD 右移 1 位，比较 B 和 D ，12ABCBCDCDE BCD 不匹配，B 在 BCD里出现">
+<meta property="og:updated_time" content="2018-01-07T14:48:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于iOS 9里 Storyboard References出现的问题">
-<meta name="twitter:description" content="Storyboard References 是iOS 9 新增的功能，如图: 很实用的一个功能，简化storyboard，看起来清爽一些，如图:  但是，一定要注意一件事，编译的Deployment Target 设置为9.0或以上，否则会报如下错误 Storyboard References cannot be the destinations of relationship segues pr">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20151103180808269?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta name="twitter:title" content="Boyer-Moore字符串查找算法">
+<meta name="twitter:description" content="这是一种类似于KMP但是更高效一点、也更简单一些的字符串查找算法，大体的思路是从右往左扫描，例如在txt = ABCBCDCDE中查找模式串pat = BCD， 12ABCBCDCDEBCD 从右往左，第一个比较的字符是 C 和 D ，不匹配，C 在 BCD 里出现的所有位置中最靠右是 1，那么 BCD 右移 1 位，比较 B 和 D ，12ABCBCDCDE BCD 不匹配，B 在 BCD里出现">
 
 
 
@@ -142,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2015/11/03/blogStoryBoardReferences/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/26/blogBoyerMoore/"/>
 
 
 
 
 
-  <title>关于iOS 9里 Storyboard References出现的问题 | Wei'Blog</title>
+  <title>Boyer-Moore字符串查找算法 | Wei'Blog</title>
   
 
 
@@ -281,7 +278,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/11/03/blogStoryBoardReferences/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/26/blogBoyerMoore/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WeiJP">
@@ -298,7 +295,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">关于iOS 9里 Storyboard References出现的问题</h1>
+          <h1 class="post-title" itemprop="name headline">Boyer-Moore字符串查找算法</h1>
         
 
         <div class="post-meta">
@@ -310,8 +307,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-03T18:01:59+08:00">
-                2015-11-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-26T21:30:06+08:00">
+                2017-03-26
               </time>
             
 
@@ -333,8 +330,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS相关/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS相关</span>
+                  <a href="/categories/数据结构和算法/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构和算法</span>
                   </a>
                 </span>
 
@@ -370,13 +367,22 @@
       
 
       
-        <p>Storyboard References 是iOS 9 新增的功能，如图:<br><img src="http://img.blog.csdn.net/20151103180808269?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
-<p>很实用的一个功能，简化storyboard，看起来清爽一些，如图:</p>
-<p><img src="http://img.blog.csdn.net/20151103180852994?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
-<p>但是，一定要注意一件事，编译的Deployment Target 设置为9.0或以上，否则会报如下错误</p>
-<p>Storyboard References cannot be the destinations of relationship segues prior to iOS 9.0</p>
-<p>ps: 我放弃使用了</p>
-<p><em>以上若有错误，欢迎提出意见，感谢</em></p>
+        <p>这是一种类似于KMP但是更高效一点、也更简单一些的字符串查找算法，大体的思路是从右往左扫描，例如在txt = ABCBCDCDE中查找模式串pat = BCD，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ABCBCDCDE</span><br><span class="line">BCD</span><br></pre></td></tr></table></figure>
+<p>从右往左，第一个比较的字符是 C 和 D ，不匹配，C 在 BCD 里出现的所有位置中最靠右是 1，那么 BCD 右移 1 位，比较 B 和 D ，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ABCBCDCDE</span><br><span class="line"> BCD</span><br></pre></td></tr></table></figure></p>
+<p>不匹配，B 在 BCD里出现的所有位置中最靠右是 0，那么BCD右移 2 位，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ABCBCDCDE</span><br><span class="line">   BCD</span><br></pre></td></tr></table></figure></p>
+<p>匹配成功，当然例子有些简单，看完以下的具体规则后，就会消除你所有的顾虑 = =！<br>具体的规则如下：（ i 是 txt 中的游标，j 是 pat 中的游标）</p>
+<pre><code>1. 如果失配字符不在 pat 中，那么 pat 右移 j+1 个位置，也就是 i += j+1 继续比较。这条应该是浅显易懂，不懂得在纸上画一下就知道了。
+
+2. 如果失配字符在 pat 中，那么 pat 右移，使得适配字符与 pat 中该字符出现的所有位置中最右的那个对齐，即右移 j - x 即 i += j - x ，x 即是最右位置。
+
+3. 如果以上两条不能使 i 增大，i += 1。
+</code></pre><p>以上第 2 条的 x 可以通过预处理来提前计算好，计算的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int right[256];</span><br><span class="line">memset(right, -1, sizeof(int) * 256);// 初始化为-1</span><br><span class="line"></span><br><span class="line">for (int k = 0; k &lt; strlen(pat); ++k) &#123;</span><br><span class="line">    right[pat[k]] = k;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>查找代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">int skip = 0;</span><br><span class="line">for (int i = 0; i &lt; strlen(txt) - strlen(pat); i += skip) &#123;</span><br><span class="line">    skip = 0;</span><br><span class="line">    for (int j = (int)strlen(pat)-1; j &gt;= 0; --j) &#123;</span><br><span class="line">        if (txt[i+j] != pat[j]) &#123; // 字符匹配失败</span><br><span class="line">            skip = j - right[pat[j]];</span><br><span class="line">            if (skip &lt; 1) &#123; // i 无法增大</span><br><span class="line">                skip += 1;</span><br><span class="line">            &#125;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (skip == 0) &#123; // 全部匹配成功</span><br><span class="line">        return i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>PS：可以根据KMP的思路，优化一下，即已经匹配过的，是不是有相同的串。</p>
+<p>参考：《算法》第四版</p>
 
       
     </div>
@@ -394,7 +400,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag"># iOS</a>
+            <a href="/tags/字符串查找/" rel="tag"># 字符串查找</a>
           
         </div>
       
@@ -407,8 +413,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/09/10/blog15091001/" rel="next" title="解决 403 Forbidden You don't have permission to access / on this server">
-                <i class="fa fa-chevron-left"></i> 解决 403 Forbidden You don't have permission to access / on this server
+              <a href="/2017/03/19/blogKMPDFA/" rel="next" title="KMP算法的DFA解法">
+                <i class="fa fa-chevron-left"></i> KMP算法的DFA解法
               </a>
             
           </div>
@@ -417,8 +423,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/01/04/blog160104/" rel="prev" title="《笔记》自定义UITableView的headerView设置背景色无效的解决方案">
-                《笔记》自定义UITableView的headerView设置背景色无效的解决方案 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/03/blogRabinKarp/" rel="prev" title="Rabin-Karp字符串查找算法">
+                Rabin-Karp字符串查找算法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
