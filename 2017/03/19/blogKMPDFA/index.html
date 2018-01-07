@@ -84,7 +84,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,Core Graphics," />
+  <meta name="keywords" content="KMP,DFA," />
 
 
 
@@ -100,20 +100,19 @@
 
 
 
-<meta name="description" content="首先确定这两个方法都是对CGRect类型的变量进行操作的，写iOS动画代码时经常用到。 1.  CGRectInset不多说，上代码： 123456789// center 为 (200, 200), 由(100+200/2, 100+200/2)得CGRect originalRect = CGRectMake(100, 100, 200, 200);    CGRect rect_Inset1">
-<meta name="keywords" content="iOS,Core Graphics">
+<meta name="description" content="简单说一下，KMP是一个时间复杂度O（n+m）的字符串匹配算法，网上也有很多其他的解法，比如next数组的解法，推荐看这里 匹配的思路 DFA：确定有限自动状态机以下是ABABAC的对应的DFA： 1.假设文本为txt，待匹配的子串为pat。  2.未匹配是状态0，此时如果条件A（匹配到了txt的字符‘A‘），会到状态1，如果是条件B、C或其他的条件，还是状态0。如果经历了匹配ABABA之后到达状">
+<meta name="keywords" content="KMP,DFA">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于CGRectInset和CGRectOffset简单说明">
-<meta property="og:url" content="http://yoursite.com/2016/11/17/blogCGRectInsetOffset/index.html">
+<meta property="og:title" content="KMP算法的DFA解法">
+<meta property="og:url" content="http://yoursite.com/2017/03/19/blogKMPDFA/index.html">
 <meta property="og:site_name" content="Wei&#39;Blog">
-<meta property="og:description" content="首先确定这两个方法都是对CGRect类型的变量进行操作的，写iOS动画代码时经常用到。 1.  CGRectInset不多说，上代码： 123456789// center 为 (200, 200), 由(100+200/2, 100+200/2)得CGRect originalRect = CGRectMake(100, 100, 200, 200);    CGRect rect_Inset1">
-<meta property="og:image" content="http://img.blog.csdn.net/20161117113924473">
-<meta property="og:image" content="http://img.blog.csdn.net/20161117125058657">
-<meta property="og:updated_time" content="2018-01-05T10:52:44.000Z">
+<meta property="og:description" content="简单说一下，KMP是一个时间复杂度O（n+m）的字符串匹配算法，网上也有很多其他的解法，比如next数组的解法，推荐看这里 匹配的思路 DFA：确定有限自动状态机以下是ABABAC的对应的DFA： 1.假设文本为txt，待匹配的子串为pat。  2.未匹配是状态0，此时如果条件A（匹配到了txt的字符‘A‘），会到状态1，如果是条件B、C或其他的条件，还是状态0。如果经历了匹配ABABA之后到达状">
+<meta property="og:image" content="http://img.blog.csdn.net/20170319213709334?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzY3OTg4Mg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2018-01-07T14:41:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于CGRectInset和CGRectOffset简单说明">
-<meta name="twitter:description" content="首先确定这两个方法都是对CGRect类型的变量进行操作的，写iOS动画代码时经常用到。 1.  CGRectInset不多说，上代码： 123456789// center 为 (200, 200), 由(100+200/2, 100+200/2)得CGRect originalRect = CGRectMake(100, 100, 200, 200);    CGRect rect_Inset1">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20161117113924473">
+<meta name="twitter:title" content="KMP算法的DFA解法">
+<meta name="twitter:description" content="简单说一下，KMP是一个时间复杂度O（n+m）的字符串匹配算法，网上也有很多其他的解法，比如next数组的解法，推荐看这里 匹配的思路 DFA：确定有限自动状态机以下是ABABAC的对应的DFA： 1.假设文本为txt，待匹配的子串为pat。  2.未匹配是状态0，此时如果条件A（匹配到了txt的字符‘A‘），会到状态1，如果是条件B、C或其他的条件，还是状态0。如果经历了匹配ABABA之后到达状">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170319213709334?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzY3OTg4Mg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
 
@@ -142,13 +141,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/17/blogCGRectInsetOffset/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/19/blogKMPDFA/"/>
 
 
 
 
 
-  <title>关于CGRectInset和CGRectOffset简单说明 | Wei'Blog</title>
+  <title>KMP算法的DFA解法 | Wei'Blog</title>
   
 
 
@@ -281,7 +280,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/17/blogCGRectInsetOffset/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/19/blogKMPDFA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WeiJP">
@@ -298,7 +297,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">关于CGRectInset和CGRectOffset简单说明</h1>
+          <h1 class="post-title" itemprop="name headline">KMP算法的DFA解法</h1>
         
 
         <div class="post-meta">
@@ -310,8 +309,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-17T12:51:57+08:00">
-                2016-11-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-19T23:54:40+08:00">
+                2017-03-19
               </time>
             
 
@@ -333,8 +332,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS相关/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS相关</span>
+                  <a href="/categories/数据结构和算法/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构和算法</span>
                   </a>
                 </span>
 
@@ -370,28 +369,27 @@
       
 
       
-        <p>首先确定这两个方法都是对CGRect类型的变量进行操作的，写iOS动画代码时经常用到。</p>
-<h2 id="1-CGRectInset"><a href="#1-CGRectInset" class="headerlink" title="1.  CGRectInset"></a>1.  CGRectInset</h2><p>不多说，上代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// center 为 (200, 200), 由(100+200/2, 100+200/2)得</span><br><span class="line">CGRect originalRect = CGRectMake(100, 100, 200, 200);</span><br><span class="line">    </span><br><span class="line">CGRect rect_Inset1 = CGRectInset(originalRect, 10, 10);</span><br><span class="line">CGRect rect_Inset2 = CGRectInset(originalRect, -10, -10);</span><br><span class="line"></span><br><span class="line">NSLog(@&quot;原始矩形大小:%@&quot;, NSStringFromCGRect(originalRect));</span><br><span class="line">NSLog(@&quot;dx=10, dy=10, CGRectInset:%@&quot;, NSStringFromCGRect(rect_Inset1));</span><br><span class="line">NSLog(@&quot;dx=-10, dy=-10, CGRectInset:%@&quot;, NSStringFromCGRect(rect_Inset2));</span><br></pre></td></tr></table></figure>
-<p>结果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">原始矩形大小:&#123;&#123;100, 100&#125;, &#123;200, 200&#125;&#125;</span><br><span class="line">dx=10, dy=10, CGRectInset:&#123;&#123;110, 110&#125;, &#123;180, 180&#125;&#125;</span><br><span class="line">dx=-10, dy=-10, CGRectInset:&#123;&#123;90, 90&#125;, &#123;220, 220&#125;&#125;</span><br></pre></td></tr></table></figure>
-<p>根据结果得知：</p>
-<ol>
-<li>原始矩形center不变，始终是(200, 200)；</li>
-<li>原始矩形size变化，width = width-2<em>dx， height = height-2</em>dy;<br><strong>图解：</strong><br><img src="http://img.blog.csdn.net/20161117113924473" alt="这里写图片描述"><br><strong>官方文档：</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/* Inset `rect&apos; by `(dx, dy)&apos; -- i.e., offset its origin by `(dx, dy)&apos;, and</span><br><span class="line">   decrease its size by `(2*dx, 2*dy)&apos;. */</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="2-CGRectOffset"><a href="#2-CGRectOffset" class="headerlink" title="2.  CGRectOffset"></a>2.  CGRectOffset</h2><p>还是上代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CGRect originalRect = CGRectMake(100, 100, 200, 200);</span><br><span class="line"></span><br><span class="line">CGRect rect_Offset1 = CGRectOffset(originalRect, 10, 10);</span><br><span class="line">CGRect rect_Offset2 = CGRectOffset(originalRect, -10, -10);</span><br><span class="line"></span><br><span class="line">NSLog(@&quot;原始矩形大小:%@&quot;, NSStringFromCGRect(originalRect));</span><br><span class="line">NSLog(@&quot;dx=10, dy=10, CGRectOffset:%@&quot;, NSStringFromCGRect(rect_Offset1));</span><br><span class="line">NSLog(@&quot;dx=-10, dy=-10, CGRectOffset:%@&quot;, NSStringFromCGRect(rect_Offset2));</span><br></pre></td></tr></table></figure>
-<p>结果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">原始矩形大小:&#123;&#123;100, 100&#125;, &#123;200, 200&#125;&#125;</span><br><span class="line">dx=10, dy=10, CGRectOffset:&#123;&#123;110, 110&#125;, &#123;200, 200&#125;&#125;</span><br><span class="line">dx=-10, dy=-10, CGRectOffset:&#123;&#123;90, 90&#125;, &#123;200, 200&#125;&#125;</span><br></pre></td></tr></table></figure>
-<p>根据结果得知：</p>
-<ol>
-<li>原始矩形size不变，始终是 (200, 200);</li>
-<li>原始矩形center改变，x = x+dx, y = y+dy;<br><strong>图解：</strong><br><img src="http://img.blog.csdn.net/20161117125058657" alt="这里写图片描述"><br><strong>官方文档：</strong></li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/* Offset `rect&apos; by `(dx, dy)&apos;. */</span><br></pre></td></tr></table></figure>
-<p><em>以上若有错误或不足，欢迎指正，感谢</em></p>
+        <p>简单说一下，KMP是一个时间复杂度O（n+m）的字符串匹配算法，网上也有很多其他的解法，比如next数组的解法，推荐看<a href="http://blog.csdn.net/u011564456/article/details/20862555?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="noopener">这里</a></p>
+<h2 id="匹配的思路"><a href="#匹配的思路" class="headerlink" title="匹配的思路"></a>匹配的思路</h2><hr>
+<p><strong>DFA：确定有限自动状态机</strong><br>以下是ABABAC的对应的DFA：<br><img src="http://img.blog.csdn.net/20170319213709334?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzY3OTg4Mg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<pre><code>1.假设文本为txt，待匹配的子串为pat。
+
+2.未匹配是状态0，此时如果条件A（匹配到了txt的字符‘A‘），会到状态1，如果是条件B、C或其他的条件，还是状态0。如果经历了匹配ABABA之后到达状态5，再匹配C到达状态6，即停止状态，也就是匹配成功。
+
+3.很明显，dfa[][]是一个二维数组,dfa[&apos;A&apos;][3]就是在状态3时，下一个条件是A时，要跳转到哪一个状态。
+
+4.匹配的过程就是：不断的用txt的字符 + 当时的状态去dfa取值，直到状态6 or txt匹配到最后一个字符，结束。
+
+5.匹配过程中，txt的字符是一个一个往后取，不会回溯，只是状态一直在变化，即本次使用的是上一次匹配后的状态，不会回溯，正是KMP算法相对于暴力解法的优势。
+</code></pre><h2 id="DFA数组的构建"><a href="#DFA数组的构建" class="headerlink" title="DFA数组的构建"></a>DFA数组的构建</h2><hr>
+<p>上边的思路如果理解了，那么剩下的问题就是如何构建dfa[][]，当然这也是难点。dfa[][]的元素分为两类：1，匹配成功；2，匹配失败。</p>
+<p><strong>1.匹配成功</strong><br>初始可确定的状态为：<br>dfa[pat[0]][0] = 1;<br>即在状态0匹配到子串的第一个字符，到达状态1；<br>dfa[pat[1]][1] = dfa[pat[0]][0] + 1</p>
+<p><strong>2.匹配失败</strong><br>初始的第一列，即状态0时，匹配失败应该还是状态0，也就是除上述dfa[pat[0]][0] = 1外，其他都为状态0。<br>那么状态j时，匹配失败：（模拟回溯）<br>假设此时匹配到c = txt[i]，然后查找dfa找到跳转到哪个状态，那么txt[i-j…i-1]这部分与pat[0…j-1]这部分是匹配的。因为i-j为起始而整体不匹配，所以pat要右移一位，所以txt[i-j]舍弃了，不用比较了，也就是在状态j遇到条件c的要跳转的状态，txt[i-j+1 … i-1] == pat[1 … j-1]。<br>引入一个状态指示数组X，X[j]是指正确输入p[1…j-1]后进入的状态，输入p[1…j-1]c后进入的状态就是dfa[c][X[j]]（在X[j]状态时输入c），即dfa[c][j]=dfa[c][x[j]]。<br>X[j+1]为正确输入p[1…j]后进入的状态，即正确输入p[1…j-1]p[j]后进入的状态，也就是在X[j]状态时输入p[j]时进入的状态，就是dfa[pat.charAt[j]][X[j]]，即递推公式为：X[j+1]=dfa[pat.charAt[j]][X[j]]，而X[0]手动初始化为0。<br><strong><em>故有：</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dfa[pat[0]][0] = 1;</span><br><span class="line">    int X = 0;</span><br><span class="line">    for (j = 1; j &lt; M; ++j)&#123;</span><br><span class="line">        for(i = 0; i &lt; R; ++i) &#123;</span><br><span class="line">            dfa[i][j] = dfa[i][X];</span><br><span class="line">        &#125;</span><br><span class="line">        dfa[pat[j]][j] = j + 1; //匹配成功</span><br><span class="line">        X = dfa[pat[j]][X]; //更新重启状态</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>附所有代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">int test_jp_search() &#123;</span><br><span class="line">    int index = jp_search(&quot;BCBAABACAABABACAA&quot;, &quot;ABABAC&quot;);</span><br><span class="line">    printf(&quot;%d\n&quot;, index);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int jp_search(char *txt, char *sub)</span><br><span class="line">&#123;</span><br><span class="line">    int M = (int)strlen(sub);</span><br><span class="line">    int R = 256;</span><br><span class="line">    //二维数组定义并初始化</span><br><span class="line">    int dfa[R][M];</span><br><span class="line">    int i = 0, j = 0;</span><br><span class="line">    for (i = 0; i &lt; R; ++i) &#123;</span><br><span class="line">        for (int j = 0; j &lt; M; ++j) &#123;</span><br><span class="line">            dfa[i][j] = 0;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    dfa[sub[0]][0] = 1;</span><br><span class="line">    int X = 0;</span><br><span class="line">    for (j = 1; j &lt; M; ++j)&#123;</span><br><span class="line">        for(i = 0; i &lt; R; ++i) &#123;</span><br><span class="line">            dfa[i][j] = dfa[i][X];</span><br><span class="line">        &#125;</span><br><span class="line">        dfa[sub[j]][j] = j + 1; //匹配成功</span><br><span class="line">        X = dfa[sub[j]][X]; //更新重启状态</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    int N = (int)strlen(txt);</span><br><span class="line">    for (i = 0, j = 0; i &lt; N &amp;&amp; j &lt; M; ++i)&#123;</span><br><span class="line">        j = dfa[txt[i]][j];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    if (j == M) &#123;</span><br><span class="line">        return i - M;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return M;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ps：感觉还是有点乱，回头再整理一下思路</p>
+<p>参考：<br>1.《算法》第四版<br>2.<a href="http://book.douban.com/subject/19952400/discussion/59623403/" target="_blank" rel="noopener">链接</a></p>
 
       
     </div>
@@ -409,9 +407,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag"># iOS</a>
+            <a href="/tags/KMP/" rel="tag"># KMP</a>
           
-            <a href="/tags/Core-Graphics/" rel="tag"># Core Graphics</a>
+            <a href="/tags/DFA/" rel="tag"># DFA</a>
           
         </div>
       
@@ -424,8 +422,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/31/blogPython161031/" rel="next" title="Python的装饰器和with语法">
-                <i class="fa fa-chevron-left"></i> Python的装饰器和with语法
+              <a href="/2016/11/29/blogLocalNotification/" rel="next" title="关于iOS 9之前的本地推送，本地推送杀掉进程后到底能不能收到？">
+                <i class="fa fa-chevron-left"></i> 关于iOS 9之前的本地推送，本地推送杀掉进程后到底能不能收到？
               </a>
             
           </div>
@@ -434,8 +432,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/11/29/blogLocalNotification/" rel="prev" title="关于iOS 9之前的本地推送，本地推送杀掉进程后到底能不能收到？">
-                关于iOS 9之前的本地推送，本地推送杀掉进程后到底能不能收到？ <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/03/blog-misic-FarewellMyConcubine/" rel="prev" title="当爱已成往事 - 张国荣">
+                当爱已成往事 - 张国荣 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -605,7 +603,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-CGRectInset"><span class="nav-number">1.</span> <span class="nav-text">1.  CGRectInset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-CGRectOffset"><span class="nav-number">2.</span> <span class="nav-text">2.  CGRectOffset</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#匹配的思路"><span class="nav-number">1.</span> <span class="nav-text">匹配的思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DFA数组的构建"><span class="nav-number">2.</span> <span class="nav-text">DFA数组的构建</span></a></li></ol></div>
             
 
           </div>
