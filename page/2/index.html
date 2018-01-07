@@ -278,6 +278,191 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/02/23/blogALAssetPropertyAssetURL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WeiJP">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wei'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/02/23/blogALAssetPropertyAssetURL/" itemprop="url">关于ALAsset的ALAssetPropertyAssetURL如何获取图片</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-02-23T18:35:01+08:00">
+                2016-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS相关/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS相关</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>I want to get the name of the image picked from the library or newly clicked in -</p>
+<pre><code>-(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+</code></pre><p>I am using this code:</p>
+<pre><code>-(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeSavedPhotosAlbum])
+    {
+        AppDelegate *del = [[UIApplication sharedApplication]delegate];
+        [self dismissModalViewControllerAnimated:YES];
+        image = [info objectForKey:UIImagePickerControllerOriginalImage];
+
+        NSLog(@&quot;imagekbgfg=====&gt;%@&quot;,image);
+        [self.imageView setImage:image];
+
+        imgName = [info objectForKey:UIImagePickerControllerOriginalImage];
+
+        del.mainImgName = imgName;
+        del.imageData = UIImageJPEGRepresentation(image, 1.0);
+        del.imageApp = image;
+    }
+
+    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
+    {
+       image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    }
+}
+</code></pre><p>How can I do this?</p>
+<p>——————————————————————————</p>
+<p>Using the code bellow you will get path like:assets-library://asset/asset.JPG?id=79450962-C0FD-484C-808B-83E045F40972&amp;ext=JPG when your picking image from photo album. This path is valid. It contains the asset ID and asset type.</p>
+<pre><code>// Firstly get the picked image&apos;s file URL.
+NSURL *imageFileURL = [info objectForKey:UIImagePickerControllerReferenceURL];
+
+// Then get the file name.
+NSString *imageName = [imageFileURL lastPathComponent];
+NSLog(@&quot;image name is %@&quot;, imageName);
+If you want to get image user picked again using the path you get using UIImagePickerController.(Here maybe you want to save the path so that you can read that image back without asking user to pick that image again) You will need the ALAssetsLibrary otherwise you don&apos;t need it.
+
+ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+__block UIImage *returnValue = nil;
+[library assetForURL:imageFileURL resultBlock:^(ALAsset *asset) {
+    returnValue = [UIImage imageWithCGImage:[[asset defaultRepresentation] fullResolutionImage]];
+} failureBlock:^(NSError *error) {
+    NSLog(@&quot;error : %@&quot;, error);
+}];
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/01/04/blog160104/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1379,7 +1564,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>

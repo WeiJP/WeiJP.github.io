@@ -100,15 +100,16 @@
 
 
 
-<meta name="description" content="无聊的XX十之八九，而有趣的灵魂万里挑一">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Wei&#39;Blog">
-<meta property="og:url" content="http://yoursite.com/tags/Core-Graphics/index.html">
+<meta name="description" content="这是一种类似于KMP但是更高效一点、也更简单一些的字符串查找算法，大体的思路是从右往左扫描，例如在txt = ABCBCDCDE中查找模式串pat = BCD， 12ABCBCDCDEBCD 从右往左，第一个比较的字符是 C 和 D ，不匹配，C 在 BCD 里出现的所有位置中最靠右是 1，那么 BCD 右移 1 位，比较 B 和 D ，12ABCBCDCDE BCD 不匹配，B 在 BCD里出现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Boyer-Moore字符串查找算法">
+<meta property="og:url" content="http://yoursite.com/2017/04/03/blogBoyerMoore/index.html">
 <meta property="og:site_name" content="Wei&#39;Blog">
-<meta property="og:description" content="无聊的XX十之八九，而有趣的灵魂万里挑一">
+<meta property="og:description" content="这是一种类似于KMP但是更高效一点、也更简单一些的字符串查找算法，大体的思路是从右往左扫描，例如在txt = ABCBCDCDE中查找模式串pat = BCD， 12ABCBCDCDEBCD 从右往左，第一个比较的字符是 C 和 D ，不匹配，C 在 BCD 里出现的所有位置中最靠右是 1，那么 BCD 右移 1 位，比较 B 和 D ，12ABCBCDCDE BCD 不匹配，B 在 BCD里出现">
+<meta property="og:updated_time" content="2018-01-07T14:45:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wei&#39;Blog">
-<meta name="twitter:description" content="无聊的XX十之八九，而有趣的灵魂万里挑一">
+<meta name="twitter:title" content="Boyer-Moore字符串查找算法">
+<meta name="twitter:description" content="这是一种类似于KMP但是更高效一点、也更简单一些的字符串查找算法，大体的思路是从右往左扫描，例如在txt = ABCBCDCDE中查找模式串pat = BCD， 12ABCBCDCDEBCD 从右往左，第一个比较的字符是 C 和 D ，不匹配，C 在 BCD 里出现的所有位置中最靠右是 1，那么 BCD 右移 1 位，比较 B 和 D ，12ABCBCDCDE BCD 不匹配，B 在 BCD里出现">
 
 
 
@@ -137,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/Core-Graphics/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/03/blogBoyerMoore/"/>
 
 
 
 
 
-  <title>Tag: Core Graphics | Wei'Blog</title>
+  <title>Boyer-Moore字符串查找算法 | Wei'Blog</title>
   
 
 
@@ -168,7 +169,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -262,54 +263,182 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Core Graphics<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/03/blogBoyerMoore/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WeiJP">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wei'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2016/11/17/blogCGRectInsetOffset/" itemprop="url">
-              
-                <span itemprop="name">关于CGRectInset和CGRectOffset简单说明</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Boyer-Moore字符串查找算法</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-17T12:51:57+08:00"
-              content="2016-11-17" >
-          11-17
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-03T01:08:41+08:00">
+                2017-04-03
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构和算法/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构和算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这是一种类似于KMP但是更高效一点、也更简单一些的字符串查找算法，大体的思路是从右往左扫描，例如在txt = ABCBCDCDE中查找模式串pat = BCD，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ABCBCDCDE</span><br><span class="line">BCD</span><br></pre></td></tr></table></figure>
+<p>从右往左，第一个比较的字符是 C 和 D ，不匹配，C 在 BCD 里出现的所有位置中最靠右是 1，那么 BCD 右移 1 位，比较 B 和 D ，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ABCBCDCDE</span><br><span class="line"> BCD</span><br></pre></td></tr></table></figure></p>
+<p>不匹配，B 在 BCD里出现的所有位置中最靠右是 0，那么BCD右移 2 位，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ABCBCDCDE</span><br><span class="line">   BCD</span><br></pre></td></tr></table></figure></p>
+<p>匹配成功，当然例子有些简单，看完以下的具体规则后，就会消除你所有的顾虑 = =！<br>具体的规则如下：（ i 是 txt 中的游标，j 是 pat 中的游标）</p>
+<pre><code>1. 如果失配字符不在 pat 中，那么 pat 右移 j+1 个位置，也就是 i += j+1 继续比较。这条应该是浅显易懂，不懂得在纸上画一下就知道了。
+
+2. 如果失配字符在 pat 中，那么 pat 右移，使得适配字符与 pat 中该字符出现的所有位置中最右的那个对齐，即右移 j - x 即 i += j - x ，x 即是最右位置。
+
+3. 如果以上两条不能使 i 增大，i += 1。
+</code></pre><p>以上第 2 条的 x 可以通过预处理来提前计算好，计算的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int right[256];</span><br><span class="line">memset(right, -1, sizeof(int) * 256);// 初始化为-1</span><br><span class="line"></span><br><span class="line">for (int k = 0; k &lt; strlen(pat); ++k) &#123;</span><br><span class="line">    right[pat[k]] = k;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>查找代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">int skip = 0;</span><br><span class="line">for (int i = 0; i &lt; strlen(txt) - strlen(pat); i += skip) &#123;</span><br><span class="line">    skip = 0;</span><br><span class="line">    for (int j = (int)strlen(pat)-1; j &gt;= 0; --j) &#123;</span><br><span class="line">        if (txt[i+j] != pat[j]) &#123; // 字符匹配失败</span><br><span class="line">            skip = j - right[pat[j]];</span><br><span class="line">            if (skip &lt; 1) &#123; // i 无法增大</span><br><span class="line">                skip += 1;</span><br><span class="line">            &#125;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (skip == 0) &#123; // 全部匹配成功</span><br><span class="line">        return i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>PS：可以根据KMP的思路，优化一下，即已经匹配过的，是不是有相同的串。</p>
+<p>参考：《算法》第四版</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/19/blogKMPDFA/" rel="next" title="KMP算法的DFA解法">
+                <i class="fa fa-chevron-left"></i> KMP算法的DFA解法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/03/blog-misic-FarewellMyConcubine/" rel="prev" title="当爱已成往事 - 张国荣">
+                当爱已成往事 - 张国荣 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -317,6 +446,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -569,10 +702,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
