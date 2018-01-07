@@ -1343,6 +1343,166 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/10/blogQSBKPython/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WeiJP">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wei'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/10/blogQSBKPython/" itemprop="url">爬取糗事百科，朗读段子</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-10T21:58:06+08:00">
+                2017-03-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python相关/" itemprop="url" rel="index">
+                    <span itemprop="name">Python相关</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一闲下来就不务正业了，写个爬虫，听段子。<br>额，mac自带的语音朗读，windows我就不知道啦，有兴趣的可以去研究一下哈。</p>
+<p><strong>环境</strong><br>python 2.7<br>mac os 10.12</p>
+<p><strong>使用</strong><br><a href="https://github.com/WeiJP/PachongQiuShiBaiKe#pachongqiushibaike" target="_blank" rel="noopener">下载</a>代码，是一个.py的文本文件，打开终端，在这个文件所属的目录下输入<code>python xxxxxx.py</code>即可，根据提示进行选择</p>
+<p><strong>朗读的代码</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from subprocess import call</span><br><span class="line">call([&apos;say&apos;, &apos;hello pengge&apos;])</span><br></pre></td></tr></table></figure>
+<p>当然了，听起来并不是很顺耳，不过我听了好一会儿之后就习惯了，有种暴走漫画的感觉 = =!</p>
+<p><strong>抓取数据</strong></p>
+<p>使用了urllib2，添加一个header就可以啦<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 抓取某一页全部的数据</span><br><span class="line">try:</span><br><span class="line">	url = &apos;http://www.qiushibaike.com/hot/page/&apos; + str(pageIndex)</span><br><span class="line">	user_agent = &apos;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_0)&apos;</span><br><span class="line">	headers = &#123; &apos;User-Agent&apos; : user_agent &#125;</span><br><span class="line">	request = urllib2.Request(url, headers = headers)</span><br><span class="line">	response = urllib2.urlopen(request)</span><br><span class="line">	return response.read().decode(&apos;utf-8&apos;)</span><br><span class="line">except urllib2.URLError, e:</span><br><span class="line">	if hasattr(e,&quot;reason&quot;):</span><br><span class="line">		print &apos;--------------------------&apos;</span><br><span class="line">		print u&quot;连接糗事百科失败,错误原因：\n&quot;,e.reason</span><br><span class="line">		print &apos;--------------------------&apos;</span><br><span class="line">        return None</span><br></pre></td></tr></table></figure></p>
+<p><strong>解析数据</strong><br>主要用到了正则表达式去匹配想要的内容，苦逼的是网页一改版，之前写的正则表达式可能就不能用了，然后导致爬取失败，此时应该使用curl+z停止爬虫程序，重新编写正则表达式。<br>同样作用的正则表达式并不一定唯一，只要能正确匹配出来就好，下面是2017.03.10的正则表达式，个人亲测应该没问题，如果有问题欢迎留言，我看到会改的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pattern = re.compile(&apos;&lt;div.*?author clearfix&quot;&gt;.*?&lt;a href.*?&lt;h2&gt;(.*?)&lt;/h2&gt;.*?&lt;div.*?content&quot;&gt;.*?&lt;span&gt;(.*?)&lt;/span&gt;.*?&lt;/a&gt;(.*?)&lt;div class=&quot;stats.*?class=&quot;number&quot;&gt;(.*?)&lt;/i&gt;&apos;,re.S)</span><br></pre></td></tr></table></figure>
+<p>匹配出了 0：作者，1：文字内容，2：图片，3：点赞数</p>
+<p><strong>程序开始时选择选项</strong><br>选择是展示还是朗读，展示要每次按键，展示一条，朗读则是自动，一条一条无限朗读，好在朗读是个同步的方法，省去自己好多时间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">print &apos;抓取糗事百科，Q退出&apos;</span><br><span class="line">		print &apos;需要自动朗读吗？Y／N&apos;</span><br><span class="line">		while True:</span><br><span class="line">			input = raw_input()</span><br><span class="line">			if input == &quot;Y&quot; or input == &quot;y&quot;:</span><br><span class="line">				self.voice = True</span><br><span class="line">				print &apos;已经选择自动朗读，curl + z 退出&apos;</span><br><span class="line">				break;</span><br><span class="line">			elif input == &quot;N&quot; or input == &quot;n&quot;:</span><br><span class="line">				self.voice = False</span><br><span class="line">				break;</span><br><span class="line">			else:</span><br><span class="line">				print &apos;只能输入 Y/N&apos;</span><br><span class="line"></span><br><span class="line">		self.stop = False</span><br><span class="line">		self.getNewPage()</span><br><span class="line">		self.showStory()</span><br></pre></td></tr></table></figure>
+<p><strong>结束语</strong></p>
+<ol>
+<li><a href="https://github.com/WeiJP/PachongQiuShiBaiKe#pachongqiushibaike" target="_blank" rel="noopener">点击下载源代码</a></li>
+<li>欢迎高手指点评论，求老司机带我飞！</li>
+<li>本来是想爬点老司机论坛的，最近开两会，万一被抓了，搞个传播xx罪就太亏了</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/29/blogLocalNotification/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1645,170 +1805,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/31/blogPython161031/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WeiJP">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wei'Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/31/blogPython161031/" itemprop="url">Python的装饰器和with语法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-31T14:01:17+08:00">
-                2016-10-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python相关/" itemprop="url" rel="index">
-                    <span itemprop="name">Python相关</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;python 2.7&gt;</span><br><span class="line">本文分两部分，第一部分是装饰器，第二部分是with语法，</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@with_connection</span><br><span class="line">def do_some_db_operation():</span><br><span class="line">    db.select(&apos;...&apos;)</span><br><span class="line">    db.update(&apos;...&apos;)</span><br><span class="line">    db.update(&apos;...&apos;)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">with db.connection():</span><br><span class="line">    db.select(&apos;...&apos;)</span><br><span class="line">    db.update(&apos;...&apos;)</span><br><span class="line">    db.update(&apos;...&apos;)</span><br></pre></td></tr></table></figure>
-<p>上下两个代码片的作用是一样的，关于数据库操作的，都使用了with语法，只不过上边的使用了装饰器，更加方便了。</p>
-<h2 id="lt-装饰器-gt"><a href="#lt-装饰器-gt" class="headerlink" title="&lt;装饰器&gt;"></a>&lt;装饰器&gt;</h2><p>动态增加代码功能，定义一个who的装饰器：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import functools</span><br><span class="line"></span><br><span class="line">def who(func):</span><br><span class="line">	@functools.wraps(func)</span><br><span class="line">    def wrapper(*args, **kw):</span><br><span class="line">        增加的功能&apos;x&apos;代码，比如 print &apos;&lt;我是小菜&gt;&apos;</span><br><span class="line">        return func(*args, **kw)</span><br><span class="line">    return wrapper</span><br></pre></td></tr></table></figure>
-<p>使用时：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@who</span><br><span class="line">def beatDoudou():</span><br><span class="line">    print &apos;打豆豆&apos;</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;我是小菜&gt;</span><br><span class="line">打豆豆</span><br></pre></td></tr></table></figure>
-<p>关于<code>@functools.wraps(fund)</code>的作用是：<br>因为在原函数外加了一层wrapper，所以调用<code>beatDoudou.__name__</code>时，返回的是wrapper，并不是beatDoudou，避免有些依赖函数签名的代码执行出错。<br><strong>带参数的装饰器</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import functools</span><br><span class="line"></span><br><span class="line">def who(name):</span><br><span class="line">    def decorator(func):</span><br><span class="line">        @functools.wraps(func)</span><br><span class="line">        def wrapper(*args, **kw):</span><br><span class="line">            print &apos;&lt;我是%s&gt;&apos; % name</span><br><span class="line">            return func(*args, **kw)</span><br><span class="line">        return wrapper</span><br><span class="line">    return decorator</span><br></pre></td></tr></table></figure>
-<p>使用时：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@who</span><br><span class="line">def beatDoudou(&apos;大鸟&apos;):</span><br><span class="line">    print &apos;打豆豆&apos;</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;我是大鸟&gt;</span><br><span class="line">打豆豆</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;with 语法&gt;</span><br><span class="line">---------</span><br><span class="line"></span><br><span class="line">使用with语法，首先要有上下文管理器（class），这个上下文管理器遵守上下文管理协议，即实现了__enter__() 和 __exit__() 方法，比如（代码看看格式就好）：</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class _ConnectionCtx(object):</span><br><span class="line">	&quot;&quot;&quot;</span><br><span class="line">	with connection():</span><br><span class="line">		pass</span><br><span class="line">		with connection():</span><br><span class="line">			pass</span><br><span class="line">	&quot;&quot;&quot;</span><br><span class="line">	def __enter__(self):</span><br><span class="line">		&quot;&quot;&quot;</span><br><span class="line">		获得一个惰性连接对象</span><br><span class="line">		&quot;&quot;&quot;</span><br><span class="line">		global _db_ctx</span><br><span class="line">		self.should_cleanup = False</span><br><span class="line">		if not _db_ctx.is_init():</span><br><span class="line">			_db_ctx.init()</span><br><span class="line">			self.should_cleanup = True</span><br><span class="line">		return self</span><br><span class="line">	def __exit__(self, exctype, excvalue, traceback):</span><br><span class="line">		&quot;&quot;&quot;</span><br><span class="line">		释放连接对象</span><br><span class="line">		&quot;&quot;&quot;</span><br><span class="line">		global _db_ctx</span><br><span class="line">		if self.should_cleanup:</span><br><span class="line">			_db_ctx.cleanup()</span><br><span class="line">#with _ConnectionCtx():关键句</span><br><span class="line">def with_connection(func):</span><br><span class="line">	&quot;&quot;&quot;</span><br><span class="line">	设计一个装饰器，替换with语法，让代码更优雅</span><br><span class="line">	比如:</span><br><span class="line">        @with_connection</span><br><span class="line">        def foo(*args, **kw):</span><br><span class="line">            f1()</span><br><span class="line">            f2()</span><br><span class="line">            f3()</span><br><span class="line">	&quot;&quot;&quot;</span><br><span class="line">	@functools.wraps(func)</span><br><span class="line">	def _wrapper(*args, **kw):</span><br><span class="line">		with _ConnectionCtx():</span><br><span class="line">			return func(*args, **kw)</span><br><span class="line">	return _wrapper</span><br></pre></td></tr></table></figure>
-<p><strong>with语法作用</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">with db.connection():</span><br><span class="line">    db.select(&apos;...&apos;)</span><br><span class="line">    db.update(&apos;...&apos;)</span><br><span class="line">    db.update(&apos;...&apos;)</span><br></pre></td></tr></table></figure></p>
-<p>三个数据库操作成为语句块，在执行之前，先执行上下文管理器的<strong>enter</strong>函数，即获得数据库连接；在执行完语句块之后，再执行<strong>exit</strong>函数，即释放数据库连接。</p>
-<p><strong>with语句执行过程类似如下：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">以下代码来自[这里](https://www.ibm.com/developerworks/cn/opensource/os-cn-pythonwith/)</span><br><span class="line">context_manager = context_expression</span><br><span class="line">    exit = type(context_manager).__exit__  </span><br><span class="line">    value = type(context_manager).__enter__(context_manager)</span><br><span class="line">    exc = True   # True 表示正常执行，即便有异常也忽略；False 表示重新抛出异常，需要对异常进行处理</span><br><span class="line">    try:</span><br><span class="line">        try:</span><br><span class="line">            target = value  # 如果使用了 as 子句</span><br><span class="line">            with-body     # 执行 with-body</span><br><span class="line">        except:</span><br><span class="line">            # 执行过程中有异常发生</span><br><span class="line">            exc = False</span><br><span class="line">            # 如果 __exit__ 返回 True，则异常被忽略；如果返回 False，则重新抛出异常</span><br><span class="line">            # 由外层代码对异常进行处理</span><br><span class="line">            if not exit(context_manager, *sys.exc_info()):</span><br><span class="line">                raise</span><br><span class="line">    finally:</span><br><span class="line">        # 正常退出，或者通过 statement-body 中的 break/continue/return 语句退出</span><br><span class="line">        # 或者忽略异常退出</span><br><span class="line">        if exc:</span><br><span class="line">            exit(context_manager, None, None, None) </span><br><span class="line">        # 缺省返回 None，None 在布尔上下文中看做是 False</span><br></pre></td></tr></table></figure>
-<p>ps：markdown编辑器有bug吧，有些内容显示不出来，只好改成代码片才可以，所以排版有点乱，sorry</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1859,7 +1855,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1881,7 +1877,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
