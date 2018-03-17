@@ -278,6 +278,158 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/17/blogMacMsgShutdown/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WeiJP">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wei'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/17/blogMacMsgShutdown/" itemprop="url">图文并茂教你用iphone发短信控制自己的mac锁屏、关机等操作（更新）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-17T19:57:45+08:00">
+                2018-03-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/一些好玩的东西/" itemprop="url" rel="index">
+                    <span itemprop="name">一些好玩的东西</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>时隔一年来更新一下，解决一些问题，附最新代码，在文章最后。</strong></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>首先，不知道大家有没有发现，在mac的信息里<br><img src="http://img.blog.csdn.net/20170310112303650?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzY3OTg4Mg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>重要的前提<br><img src="http://img.blog.csdn.net/20170310112917767?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzY3OTg4Mg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>也就是说，在”信息”里有脚本处理程序，里面已经有了一些系统预制的一些脚本，当然，都是AppleScript编写的，但是看起来貌似都能看懂，现在要做的就是自己写脚本，然后在这里设置，比如上图里的脚本wjp.applescript就是我自己的。</p>
+<h2 id="先实现功能"><a href="#先实现功能" class="headerlink" title="先实现功能"></a><font color="#0000ff" size="48">先实现功能</font></h2><p>1，新建一个文本文件，名称随意，后缀为applescript。<br>2，将下边的代码复制到上边新建的文本文件中，将代码中<font color="#00ffff" size="12">你的账号</font>替换成你的账号即可，然后保存。代码逻辑很简单，判断+执行。（主要代码已更新，解决无错误报警导致失效的问题）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">using terms from application &quot;Messages&quot;</span><br><span class="line">	on message received theMessage from theBuddy for theChat</span><br><span class="line">		set serviceBuddy to name of service of theBuddy</span><br><span class="line">		-- 检查发送者是否是我自己</span><br><span class="line">		if serviceBuddy = &quot;你的账号&quot; then</span><br><span class="line">			if theMessage = &quot;锁屏&quot; then</span><br><span class="line">				send &quot;已接收&quot; to theChat</span><br><span class="line">				tell application &quot;Terminal&quot;</span><br><span class="line">					do shell script &quot;/System/Library/CoreServices/Menu\\ Extras/User.menu/Contents/Resources/CGSession -suspend&quot;</span><br><span class="line">				end tell</span><br><span class="line">			else if theMessage = &quot;睡眠&quot; then</span><br><span class="line">				send &quot;已接收&quot; to theChat</span><br><span class="line">				tell application &quot;Finder&quot;</span><br><span class="line">					sleep</span><br><span class="line">				end tell</span><br><span class="line">			else if theMessage = &quot;关机&quot; then</span><br><span class="line">				send &quot;已接收&quot; to theChat</span><br><span class="line">				tell application &quot;Finder&quot;</span><br><span class="line">					shut down</span><br><span class="line">				end tell</span><br><span class="line">			else if theMessage = &quot;重启&quot; then</span><br><span class="line">				send &quot;已接收&quot; to theChat</span><br><span class="line">				tell application &quot;Finder&quot;</span><br><span class="line">					restart</span><br><span class="line">				end tell</span><br><span class="line">			else if theMessage = &quot;注销&quot; then</span><br><span class="line">				send &quot;已接收&quot; to theChat</span><br><span class="line">				tell application &quot;System Events&quot;</span><br><span class="line">					log out</span><br><span class="line">				end tell</span><br><span class="line">			end if</span><br><span class="line">		else</span><br><span class="line">			display dialog &quot;不是自己账号&quot; &amp; serviceBuddy</span><br><span class="line">		end if</span><br><span class="line">		</span><br><span class="line">	end message received</span><br><span class="line">	</span><br><span class="line">end using terms from</span><br></pre></td></tr></table></figure>
+<p>3.点击下图标注位置，打开存放脚本的文件夹，然后把刚刚的脚本放进去，然后再回来这个页面选中刚刚添加进去的脚本，就大功告成了<br><img src="http://img.blog.csdn.net/20170310114210363?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzY3OTg4Mg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a><font color="#f000f0" size="48">注意</font></h2><ol>
+<li>“信息”要处于打开状态，可以设置开机自启动”信息”；</li>
+<li>代码中对应的汉字命令，大家可以随意改成自己喜欢的字符串；</li>
+<li>功能还可以扩展很多很多，因为可以调用终端执行shell script，大家自己去探索喽；</li>
+<li>本人写applescript的经验也不多，就业余爱好，如有错误，非常非常的欢迎指正，感谢，<a href="https://github.com/WeiJP/imsg_command" target="_blank" rel="noopener"><font color="#0000ff">最新代码</font></a>；</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/10/blog-music-piaoyangguohailaikanni/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1604,157 +1756,6 @@
 <li><a href="https://github.com/WeiJP/PachongQiuShiBaiKe#pachongqiushibaike" target="_blank" rel="noopener">点击下载源代码</a></li>
 <li>欢迎高手指点评论，求老司机带我飞！</li>
 <li>本来是想爬点老司机论坛的，最近开两会，万一被抓了，搞个传播xx罪就太亏了</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/10/blogMacMsgShutdown/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WeiJP">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wei'Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/10/blogMacMsgShutdown/" itemprop="url">图文并茂教你用iphone发短信控制自己的mac锁屏、关机等操作</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-10T11:57:45+08:00">
-                2017-03-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/一些好玩的东西/" itemprop="url" rel="index">
-                    <span itemprop="name">一些好玩的东西</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前闲来无聊，听朋友说过这个东西，然后稍微看了一些，觉得还是蛮有意思的，今天写出来给大家分享一下。<br>首先，不知道大家有没有发现，在mac的信息里<br><img src="http://img.blog.csdn.net/20170310112303650?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzY3OTg4Mg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>重要的前提<br><img src="http://img.blog.csdn.net/20170310112917767?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzY3OTg4Mg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>也就是说，在”信息”里有脚本处理程序，里面已经有了一些系统预制的一些脚本，当然，都是AppleScript编写的，但是看起来貌似都能看懂，现在要做的就是自己写脚本，然后在这里设置，比如上图里的脚本wjp.applescript就是我自己的。</p>
-<h2 id="先实现功能"><a href="#先实现功能" class="headerlink" title="先实现功能"></a><font color="#0000ff" size="48">先实现功能</font></h2><p>1，新建一个文本文件，名称随意，后缀为applescript。<br>2，将下边的代码复制到上边新建的文本文件中，将代码中<font color="#00ffff" size="12">你的账号</font>替换成你的账号即可，然后保存。代码逻辑很简单，判断+执行。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">using terms from application &quot;Messages&quot;</span><br><span class="line">	on message received theMessage from theBuddy for theChat</span><br><span class="line">		set serviceBuddy to name of service of theBuddy</span><br><span class="line">		-- 检查发送者是否是我自己</span><br><span class="line">		if serviceBuddy = &quot;你的账号&quot; then</span><br><span class="line">			if theMessage = &quot;锁屏&quot; then</span><br><span class="line">				send &quot;已接收&quot; to theChat</span><br><span class="line">				tell application &quot;Terminal&quot;</span><br><span class="line">					do shell script &quot;/System/Library/CoreServices/Menu\\ Extras/User.menu/Contents/Resources/CGSession -suspend&quot;</span><br><span class="line">				end tell</span><br><span class="line">			else if theMessage = &quot;睡眠&quot; then</span><br><span class="line">				send &quot;已接收&quot; to theChat</span><br><span class="line">				tell application &quot;Finder&quot;</span><br><span class="line">					sleep</span><br><span class="line">				end tell</span><br><span class="line">			else if theMessage = &quot;关机&quot; then</span><br><span class="line">				send &quot;已接收&quot; to theChat</span><br><span class="line">				tell application &quot;Finder&quot;</span><br><span class="line">					shut down</span><br><span class="line">				end tell</span><br><span class="line">			else if theMessage = &quot;重启&quot; then</span><br><span class="line">				send &quot;已接收&quot; to theChat</span><br><span class="line">				tell application &quot;Finder&quot;</span><br><span class="line">					restart</span><br><span class="line">				end tell</span><br><span class="line">			else if theMessage = &quot;注销&quot; then</span><br><span class="line">				send &quot;已接收&quot; to theChat</span><br><span class="line">				tell application &quot;System Events&quot;</span><br><span class="line">					log out</span><br><span class="line">				end tell</span><br><span class="line">			end if</span><br><span class="line">		else</span><br><span class="line">			display dialog &quot;不是自己账号&quot; &amp; serviceBuddy</span><br><span class="line">		end if</span><br><span class="line">		</span><br><span class="line">	end message received</span><br><span class="line">	</span><br><span class="line">end using terms from</span><br></pre></td></tr></table></figure>
-<p>3.点击下图标注位置，打开存放脚本的文件夹，然后把刚刚的脚本放进去，然后再回来这个页面选中刚刚添加进去的脚本，就大功告成了<br><img src="http://img.blog.csdn.net/20170310114210363?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzY3OTg4Mg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a><font color="#f000f0" size="48">注意</font></h2><ol>
-<li>“信息”要处于打开状态，可以设置开机自启动”信息”；</li>
-<li>代码中对应的汉字命令，大家可以随意改成自己喜欢的字符串；</li>
-<li>功能还可以扩展很多很多，因为可以调用终端执行shell script，大家自己去探索喽；</li>
-<li>本人写applescript的经验也不多，就业余爱好，如有错误，非常非常的欢迎指正，感谢；</li>
 </ol>
 
           
