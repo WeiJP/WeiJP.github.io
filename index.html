@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion" lang="">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -106,6 +106,7 @@
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="Wei&#39;Blog">
 <meta property="og:description" content="无聊的XX十之八九，而有趣的灵魂万里挑一">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Wei&#39;Blog">
 <meta name="twitter:description" content="无聊的XX十之八九，而有趣的灵魂万里挑一">
@@ -123,7 +124,7 @@
     motion: true,
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: '博主'
     },
     algolia: {
       applicationID: '',
@@ -161,7 +162,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -211,7 +212,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
           </a>
         </li>
       
@@ -221,7 +222,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            Categories
+            分类
           </a>
         </li>
       
@@ -231,7 +232,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -241,7 +242,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            Tags
+            标签
           </a>
         </li>
       
@@ -307,9 +308,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-17T19:57:45+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-17T19:57:45+08:00">
                 2018-03-17
               </time>
             
@@ -328,7 +329,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -371,19 +372,16 @@
       
         
           
-            <p><strong>时隔一年来更新一下，解决一些问题，附最新代码，在文章最后。</strong></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>首先，不知道大家有没有发现，在mac的信息里<br><img src="http://img.blog.csdn.net/20170310112303650?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzY3OTg4Mg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>重要的前提<br><img src="http://img.blog.csdn.net/20170310112917767?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzY3OTg4Mg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>也就是说，在”信息”里有脚本处理程序，里面已经有了一些系统预制的一些脚本，当然，都是AppleScript编写的，但是看起来貌似都能看懂，现在要做的就是自己写脚本，然后在这里设置，比如上图里的脚本wjp.applescript就是我自己的。</p>
-<h2 id="先实现功能"><a href="#先实现功能" class="headerlink" title="先实现功能"></a><font color="#0000ff" size="48">先实现功能</font></h2><p>1，新建一个文本文件，名称随意，后缀为applescript。<br>2，将下边的代码复制到上边新建的文本文件中，将代码中<font color="#00ffff" size="12">你的账号</font>替换成你的账号即可，然后保存。代码逻辑很简单，判断+执行。（主要代码已更新，解决无错误报警导致失效的问题）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">using terms from application &quot;Messages&quot;</span><br><span class="line">	on message received theMessage from theBuddy for theChat</span><br><span class="line">		set serviceBuddy to name of service of theBuddy</span><br><span class="line">		-- 检查发送者是否是我自己</span><br><span class="line">		if serviceBuddy = &quot;你的账号&quot; then</span><br><span class="line">			if theMessage = &quot;锁屏&quot; then</span><br><span class="line">				send &quot;已接收&quot; to theChat</span><br><span class="line">				tell application &quot;Terminal&quot;</span><br><span class="line">					do shell script &quot;/System/Library/CoreServices/Menu\\ Extras/User.menu/Contents/Resources/CGSession -suspend&quot;</span><br><span class="line">				end tell</span><br><span class="line">			else if theMessage = &quot;睡眠&quot; then</span><br><span class="line">				send &quot;已接收&quot; to theChat</span><br><span class="line">				tell application &quot;Finder&quot;</span><br><span class="line">					sleep</span><br><span class="line">				end tell</span><br><span class="line">			else if theMessage = &quot;关机&quot; then</span><br><span class="line">				send &quot;已接收&quot; to theChat</span><br><span class="line">				tell application &quot;Finder&quot;</span><br><span class="line">					shut down</span><br><span class="line">				end tell</span><br><span class="line">			else if theMessage = &quot;重启&quot; then</span><br><span class="line">				send &quot;已接收&quot; to theChat</span><br><span class="line">				tell application &quot;Finder&quot;</span><br><span class="line">					restart</span><br><span class="line">				end tell</span><br><span class="line">			else if theMessage = &quot;注销&quot; then</span><br><span class="line">				send &quot;已接收&quot; to theChat</span><br><span class="line">				tell application &quot;System Events&quot;</span><br><span class="line">					log out</span><br><span class="line">				end tell</span><br><span class="line">			end if</span><br><span class="line">		else</span><br><span class="line">			display dialog &quot;不是自己账号&quot; &amp; serviceBuddy</span><br><span class="line">		end if</span><br><span class="line">		</span><br><span class="line">	end message received</span><br><span class="line">	</span><br><span class="line">end using terms from</span><br></pre></td></tr></table></figure>
-<p>3.点击下图标注位置，打开存放脚本的文件夹，然后把刚刚的脚本放进去，然后再回来这个页面选中刚刚添加进去的脚本，就大功告成了<br><img src="http://img.blog.csdn.net/20170310114210363?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzY3OTg4Mg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a><font color="#f000f0" size="48">注意</font></h2><ol>
-<li>“信息”要处于打开状态，可以设置开机自启动”信息”；</li>
-<li>代码中对应的汉字命令，大家可以随意改成自己喜欢的字符串；</li>
-<li>功能还可以扩展很多很多，因为可以调用终端执行shell script，大家自己去探索喽；</li>
-<li>本人写applescript的经验也不多，就业余爱好，如有错误，非常非常的欢迎指正，感谢，<a href="https://github.com/WeiJP/imsg_command" target="_blank" rel="noopener"><font color="#0000ff">最新代码</font></a>；</li>
-</ol>
-
-          
+          时隔一年来更新一下，解决一些问题，附最新代码，在文章最后。
+前言首先，不知道大家有没有发现，在mac的信息里重要的前提也就是说，在”信息”里有脚本处理程序，里面已经有了一些系统预制的一些脚本，当然，都是AppleScript编写的，但是看起来貌似都能看懂，现在要做的就是自己写脚本，然后在这里设置，比
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/17/blogMacMsgShutdown/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -459,9 +457,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-10T10:50:34+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T10:50:34+08:00">
                 2018-01-10
               </time>
             
@@ -480,7 +478,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -523,17 +521,19 @@
       
         
           
-            <p><em><a href="https://www.youtube.com/watch?v=hNQohQBFnwI" target="_blank" rel="noopener">mv地址（需翻墙）</a></em></p>
-<p>【ROCK TODAY】1991年8月16日 娃娃《大雨》磅礴发行！</p>
-<p>我想，我们都有点傻，想在现实的生活里，追寻真正的爱情。<br>你知道吗？真正的爱情，其实，只在你的心里。</p>
-<p>这首歌是娃娃自己的故事，因为唱得荡气回肠，唱得令人动容！<br>也许只有真正来自内心的故事和音乐，才能如此打动人心！</p>
-<p>远距离的恋情是否能经得起考验？<br>每一种恋情是否都能得到相同的祝福？</p>
-<p>“为了你的承诺，我在最绝望的时候，都忍不住不哭泣！”<br>那是对爱的坚持…</p>
-<p>“陌生的城市啊，熟悉的角落里，也曾彼此安慰，也曾相拥叹息，<br>不管将会面对什么样的结局！”<br>那是爱的勇气…</p>
-<p>“多盼能送君千里，直到山穷水尽，一生和你相依！”<br>那是对爱的信仰…</p>
-<p>娃娃唱出自己的故事，也为许多有着同样困扰的恋人们，<br>用歌声唱出心里最真的感受。</p>
-
-          
+          mv地址（需翻墙）
+【ROCK TODAY】1991年8月16日 娃娃《大雨》磅礴发行！
+我想，我们都有点傻，想在现实的生活里，追寻真正的爱情。你知道吗？真正的爱情，其实，只在你的心里。
+这首歌是娃娃自己的故事，因为唱得荡气回肠，唱得令人动容！也许只有真正来自内心的故事和音乐，才能如此打动人心！
+远
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/10/blog-music-piaoyangguohailaikanni/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -609,9 +609,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-07T00:27:50+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-07T00:27:50+08:00">
                 2017-12-07
               </time>
             
@@ -630,7 +630,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -673,15 +673,16 @@
       
         
           
-            <p>最近几天在做一个新项目，需要用到deviceToken，于是有了以下的问题：<br><strong>1、</strong> deviceToken是什么时机能获取，即</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (void)application:(UIApplication *)application</span><br><span class="line">didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken</span><br><span class="line">// Tells the delegate that the app successfully registered with Apple Push Notification service (APNs).</span><br></pre></td></tr></table></figure>
-<p> 印象中是在点了弹出通知权限的alert的同意键，然后才开始注册apns，然后回调该方法，获取deviceToken。<br> 但是如此是满足不了当前的需求的，我需要无论允许还是拒绝，都能拿到deviceToken，解决方案为：<br> 勾选<strong>Background Modes</strong>中的<strong>remote notification</strong> 和 <strong>background fetch</strong>，即可达到在注册notificationSettings的时候获取到<strong><em>deviceToken</em></strong>，也就是弹权限请求alert的同时。<em>(注：其实只勾选前者即可)</em></p>
-<p><strong>2、</strong> 由上引发思考，上面勾选的两个设置有什么作用？<br>说来惭愧，这俩都是iOS 7就引入的新特性了。。。。一个是后台应用刷新，一个是静默推送（Silent Remote Notifications），网上关于这俩的资源还是很多的，也没啥可说的，照着文档来就行</p>
-<p><strong>3、</strong> 为什么勾选（打开）静默推送就可以不经过用户允许，直接拿到<strong><em>deviceToken</em></strong> 呢，那么是不是可以无视用户的通知权限来进行静默推送呢？于是测试了一下，果然如此，在我点击了拒绝之后，仍然能收到静默推送<br><img src="http://img.blog.csdn.net/20171207001729490?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzY3OTg4Mg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>同时发现，app前台运行时，普通推送也能收到，只是不会展示，猜测后台时也会收到，等回头不忙了，再写个<strong>UNNotificationServiceExtension</strong> 测试一下</p>
-<p>推送作为一个很重要的功能，几乎每次iOS大版本都会有改动，用起来还是谨慎一些为好，多测试一下</p>
-
-          
+          最近几天在做一个新项目，需要用到deviceToken，于是有了以下的问题：1、 deviceToken是什么时机能获取，即
+123- (void)application:(UIApplication *)applicationdidRegisterForRemoteNotificationsWit
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/07/blog17120701/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -757,9 +758,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-15T16:40:27+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-15T16:40:27+08:00">
                 2017-11-15
               </time>
             
@@ -778,7 +779,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -821,15 +822,16 @@
       
         
           
-            <p><img src="http://img.blog.csdn.net/20171115163817275?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzY3OTg4Mg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>没用第三方的分享sdk，然后腾讯自己的文档实在是辣眼睛，分享url到QQ好友没有任何问题，分享到QQ空间Icon加载不出来，也怀疑过是不是尺寸的问题，最终发现是不能分享本地图片，必须是图片的URL才行，简直太坑了，官方文档只字不提，而且还给了使用本地图片的Api，下边是从shareSDK的官网上找到的说明：</p>
-<hr>
-<p><strong>QQ空间支持分享文字和图文</strong><br>参数说明<br>title：最多200个字符<br>text：最多600个字符</p>
-<p>QQ空间本身不支持分享本地图片，因此如果想分享本地图片，需要去QQ互联，也就是注册应用的地方，先让你的应用通过审核，然后获取upload_pic这个接口的权限，图片会先上传到ShareSDK的文件服务器，得到连接以后才分享此链接。本地图片更耗流量。</p>
-<hr>
-<p>所以，用第三方分享sdk的小伙伴应该是没有什么问题的。。。</p>
-
           
+没用第三方的分享sdk，然后腾讯自己的文档实在是辣眼睛，分享url到QQ好友没有任何问题，分享到QQ空间Icon加载不出来，也怀疑过是不是尺寸的问题，最终发现是不能分享本地图片，必须是图片的URL才行，简直太坑了，官方文档只字不提，而且还给了使用本地图片的Api，下边是从shareSDK的官网上找
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/15/blog17112401/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -905,9 +907,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-24T11:37:21+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-24T11:37:21+08:00">
                 2017-08-24
               </time>
             
@@ -926,7 +928,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -969,16 +971,17 @@
       
         
           
-            <h1 id="想要的结果："><a href="#想要的结果：" class="headerlink" title="想要的结果："></a>想要的结果：</h1><p><strong>自定义转场动画，弹出modalViewController，然后点击周围可以dismiss掉。</strong></p>
-<p>最终实现的效果忘记截图了，欢迎下载《现在视频》体验一下。。。。。。</p>
-<h1 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h1><p>因为自定义转场动画后，present出VC大小被改变了。<br>点击周围，实际上落点并不在当前的modalViewController内。所以点击手势并不能添加到当前的VC（也就是modalViewController）上。</p>
-<h1 id="实现方法："><a href="#实现方法：" class="headerlink" title="实现方法："></a>实现方法：</h1><p>我的实现方法是：给<strong>self.view.window</strong>添加一个tap，在手势的代理中判断点击是否在controller内。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">let tap = UITapGestureRecognizer(target: self, action: #selector(你的响应方法，实现为空即可))</span><br><span class="line">    override func viewDidAppear(_ animated: Bool) &#123;</span><br><span class="line">        super.viewDidAppear(animated)</span><br><span class="line">        </span><br><span class="line">        tap.delegate = self</span><br><span class="line">        self.view.window?.addGestureRecognizer(tap)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    override func viewWillDisappear(_ animated: Bool) &#123;</span><br><span class="line">        super.viewWillDisappear(animated)</span><br><span class="line">        </span><br><span class="line">        tap.delegate = nil</span><br><span class="line">        self.view.window?.removeGestureRecognizer(tap)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>实际的操作在这里：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">extension XZBasicViewController: UIGestureRecognizerDelegate &#123;</span><br><span class="line">    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -&gt; Bool &#123;</span><br><span class="line">        let point = gestureRecognizer.location(in: self.view)</span><br><span class="line">        if !self.view.point(inside: point, with: nil) &#123;</span><br><span class="line">            self.navigationController?.dismiss(animated: true, completion: &#123;</span><br><span class="line">            &#125;)</span><br><span class="line">            return true</span><br><span class="line">        &#125;</span><br><span class="line">        return false</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><em>以上有错误，或者有更好的实现方式，欢迎提出，感谢</em></p>
-
-          
+          想要的结果：自定义转场动画，弹出modalViewController，然后点击周围可以dismiss掉。
+最终实现的效果忘记截图了，欢迎下载《现在视频》体验一下。。。。。。
+问题：因为自定义转场动画后，present出VC大小被改变了。点击周围，实际上落点并不在当前的modalViewContro
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/24/blogModelPresent/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1054,9 +1057,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-03T10:50:34+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-03T10:50:34+08:00">
                 2017-07-03
               </time>
             
@@ -1075,7 +1078,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1118,18 +1121,19 @@
       
         
           
-            <p><strong>在youtube上偶然间听到的，歌好听，mv也好看，非常非常经典的电影，如果有缘看到这个博客，建议去看《霸王别姬》</strong></p>
-<p><em><a href="https://www.youtube.com/watch?v=0kA7sSBH93o&amp;list=RD0kA7sSBH93o&amp;t=259" title="Farewell my concubine" target="_blank" rel="noopener">mv地址（需翻墙）</a></em></p>
-<p><em><a href="https://www.bilibili.com/video/av11786772/" title="Farewell my concubine" target="_blank" rel="noopener">mv地址（不需翻墙）</a></em></p>
-<img src="/2017/07/03/blog-misic-FarewellMyConcubine/mv1.png">
-<p>Song: 當愛已成往事<br>Artist:  張國榮 | Leslie Cheung<br>Main theme of Farewell My Concubine (  霸王別姬) (1993) by Chen Kaige</p>
-<p>當愛已成往事</p>
-<p>往事不要再提 人生已多風雨 縱然記憶抹不去 愛與恨都還在心裡<br>真的要斷了過去 讓明天好好繼續 你就不要再苦苦追問我的消息<br>愛情它是個難題 讓人目眩神迷 忘了痛或許可以 忘了你卻太不容易<br>你不曾真的離去 你始終在我心裡 我對你仍有愛意 我對自己無能為力<br>因為我仍有夢 依然將你放在我心中 總是容易被往事打動 總是為了你心痛<br>別流連歲月中 我無意的柔情萬種 不要問我是否再相逢 不要管我是否言不由衷<br>為何你不懂 只要有愛就有痛 有一天你會知道 人生沒有我並不會不同<br>人生已經太匆匆 我好害怕總是淚眼朦朧 忘了我就沒有痛 將往事留在風中</p>
-<p>~間奏~</p>
-<p>因為我仍有夢 依然將你放在我心中 總是容易被往事打動 總是為了你心痛<br>別流連歲月中 我無意的柔情萬種 不要問我是否再相逢 不要管我是否言不由衷<br>為何你不懂 只要有愛就有痛 有一天你會知道 人生沒有我並不會不同<br>人生已經太匆匆 我好害怕總是淚眼朦朧 忘了我就沒有痛 將往事留在風中</p>
-<p>為何你不懂 只要有愛就有痛 有一天你會知道 人生沒有我並不會不同<br>人生已經太匆匆 我好害怕總是淚眼朦朧 忘了我就沒有痛 將往事留在風中</p>
+          在youtube上偶然间听到的，歌好听，mv也好看，非常非常经典的电影，如果有缘看到这个博客，建议去看《霸王别姬》
+mv地址（需翻墙）
+mv地址（不需翻墙）
 
-          
+Song: 當愛已成往事Artist:  張國榮 | Leslie CheungMain theme of Farewell My Conc
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/03/blog-misic-FarewellMyConcubine/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1205,9 +1209,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-03T01:08:41+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-03T01:08:41+08:00">
                 2017-04-03
               </time>
             
@@ -1226,7 +1230,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1269,17 +1273,15 @@
       
         
           
-            <p>不同于传统的字符比较，本算法的核心在于散列。<br>先计算出子串 pat 的一个散列值，然后从文本 txt 中，从 i = 0 开始，计算从当前 i 开始的子串长度的字符串的散列，比如 pat = ‘250’，txt = ‘230240250’，计算的是 ‘230’、’302’、’024’的散列，依次类推，与’250’的散列值进行比较，如果散列值相同，再比较两个字符串是否匹配，当然会有散列冲突，但是可以把冲突几率降低，忽略不计，该算法是线性时间，前提是使用了Rabin-Karp发明的求散列值的算法。<br><img src="http://img.blog.csdn.net/20170403003443496?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzY3OTg4Mg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="基本思想"></p>
-<p><strong>除留余数法</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 取余操作有一个基本性质，每次算数操作之后取余，等价于所有算数操作都结束后再取余</span><br><span class="line">long jp_hash(char *key, int M) &#123; // M是key的长度</span><br><span class="line">    long result = 0;</span><br><span class="line">    long Q = 997; // 除数，此处选一个大素数</span><br><span class="line">    long R = 10; // 进制，此处选10</span><br><span class="line">    for (int i = 0; i &lt; M; ++i) &#123;</span><br><span class="line">        result = (result * R + key[i]) % Q;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以上，子串 pat 的散列值求完了。</p>
-<p><strong>然后</strong><br>匹配过程中 txt 子串的散列值计算，即在 i 的基础上计算 i+1 的散列值。如图：<br><img src="http://img.blog.csdn.net/20170403005027012?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzY3OTg4Mg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>核心算法是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">int jp_search(char *txt, char *pat) &#123;</span><br><span class="line">    long M = strlen(pat);</span><br><span class="line">    long N = strlen(txt);</span><br><span class="line">    </span><br><span class="line">    long Q = 997; // 除数，此处选一个大素数</span><br><span class="line">    long R = 10; // 进制，此处选10</span><br><span class="line">    long RM = 30; // R^(M-1) % Q, 假设 M = 5，此处为10000 % 997 = 30</span><br><span class="line">    long txt_hash = jp_hash(txt, (int)M);</span><br><span class="line">    long pat_hash = jp_hash(pat, M);</span><br><span class="line">    for (int i = M; i &lt; N; ++i) &#123;</span><br><span class="line">        // 减去第一个数字，加上最后一个数字</span><br><span class="line">        txt_hash = (txt_hash - RM * txt[i-M] % Q + Q) % Q;</span><br><span class="line">        txt_hash = (txt_hash * R + txt[i]) % Q;</span><br><span class="line">        </span><br><span class="line">        if (txt_hash == pat_hash) &#123;</span><br><span class="line">            // 进行匹配，成功则返回，失败则continue</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return N; // 查找失败</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>比较难理解的应该是计算 txt_hash 的两句，这里还是应用了取余操作的基本原则，第二句里的txt_hash本来应该是数的值，但等价于该值取余之后的余数，所以第一句计算的是新子串的余数，即上一个txt_hash减去第一个字符的余数，然后第二句是加上新字符再次求余数即txt_hash，+Q是防止 txt_hash - RM * txt[i-M] % Q 这里出现负数。</p>
-<p>参考：《算法》第四版</p>
-
-          
+          不同于传统的字符比较，本算法的核心在于散列。先计算出子串 pat 的一个散列值，然后从文本 txt 中，从 i = 0 开始，计算从当前 i 开始的子串长度的字符串的散列，比如 pat = ‘250’，txt = ‘230240250’，计算的是 ‘230’、’302’、’024’的散列，依次类推，
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/03/blogRabinKarp/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1355,9 +1357,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-26T21:30:06+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-26T21:30:06+08:00">
                 2017-03-26
               </time>
             
@@ -1376,7 +1378,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1419,24 +1421,17 @@
       
         
           
-            <p>这是一种类似于KMP但是更高效一点、也更简单一些的字符串查找算法，大体的思路是从右往左扫描，例如在txt = ABCBCDCDE中查找模式串pat = BCD，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ABCBCDCDE</span><br><span class="line">BCD</span><br></pre></td></tr></table></figure>
-<p>从右往左，第一个比较的字符是 C 和 D ，不匹配，C 在 BCD 里出现的所有位置中最靠右是 1，那么 BCD 右移 1 位，比较 B 和 D ，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ABCBCDCDE</span><br><span class="line"> BCD</span><br></pre></td></tr></table></figure></p>
-<p>不匹配，B 在 BCD里出现的所有位置中最靠右是 0，那么BCD右移 2 位，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ABCBCDCDE</span><br><span class="line">   BCD</span><br></pre></td></tr></table></figure></p>
-<p>匹配成功，当然例子有些简单，看完以下的具体规则后，就会消除你所有的顾虑 = =！<br>具体的规则如下：（ i 是 txt 中的游标，j 是 pat 中的游标）</p>
-<pre><code>1. 如果失配字符不在 pat 中，那么 pat 右移 j+1 个位置，也就是 i += j+1 继续比较。这条应该是浅显易懂，不懂得在纸上画一下就知道了。
-
-2. 如果失配字符在 pat 中，那么 pat 右移，使得适配字符与 pat 中该字符出现的所有位置中最右的那个对齐，即右移 j - x 即 i += j - x ，x 即是最右位置。
-
-3. 如果以上两条不能使 i 增大，i += 1。
-</code></pre><p>以上第 2 条的 x 可以通过预处理来提前计算好，计算的代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int right[256];</span><br><span class="line">memset(right, -1, sizeof(int) * 256);// 初始化为-1</span><br><span class="line"></span><br><span class="line">for (int k = 0; k &lt; strlen(pat); ++k) &#123;</span><br><span class="line">    right[pat[k]] = k;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>查找代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">int skip = 0;</span><br><span class="line">for (int i = 0; i &lt; strlen(txt) - strlen(pat); i += skip) &#123;</span><br><span class="line">    skip = 0;</span><br><span class="line">    for (int j = (int)strlen(pat)-1; j &gt;= 0; --j) &#123;</span><br><span class="line">        if (txt[i+j] != pat[j]) &#123; // 字符匹配失败</span><br><span class="line">            skip = j - right[pat[j]];</span><br><span class="line">            if (skip &lt; 1) &#123; // i 无法增大</span><br><span class="line">                skip += 1;</span><br><span class="line">            &#125;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (skip == 0) &#123; // 全部匹配成功</span><br><span class="line">        return i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>PS：可以根据KMP的思路，优化一下，即已经匹配过的，是不是有相同的串。</p>
-<p>参考：《算法》第四版</p>
-
-          
+          这是一种类似于KMP但是更高效一点、也更简单一些的字符串查找算法，大体的思路是从右往左扫描，例如在txt = ABCBCDCDE中查找模式串pat = BCD，
+12ABCBCDCDEBCD
+从右往左，第一个比较的字符是 C 和 D ，不匹配，C 在 BCD 里出现的所有位置中最靠右是 1，那么 B
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/26/blogBoyerMoore/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1512,9 +1507,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-19T23:54:40+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-19T23:54:40+08:00">
                 2017-03-19
               </time>
             
@@ -1533,7 +1528,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1576,29 +1571,20 @@
       
         
           
-            <p>简单说一下，KMP是一个时间复杂度O（n+m）的字符串匹配算法，网上也有很多其他的解法，比如next数组的解法，推荐看<a href="http://blog.csdn.net/u011564456/article/details/20862555?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="noopener">这里</a></p>
-<h2 id="匹配的思路"><a href="#匹配的思路" class="headerlink" title="匹配的思路"></a>匹配的思路</h2><hr>
-<p><strong>DFA：确定有限自动状态机</strong><br>以下是ABABAC的对应的DFA：<br><img src="http://img.blog.csdn.net/20170319213709334?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzY3OTg4Mg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<pre><code>1.假设文本为txt，待匹配的子串为pat。
+          简单说一下，KMP是一个时间复杂度O（n+m）的字符串匹配算法，网上也有很多其他的解法，比如next数组的解法，推荐看这里
+匹配的思路
+DFA：确定有限自动状态机以下是ABABAC的对应的DFA：
+1.假设文本为txt，待匹配的子串为pat。
 
-2.未匹配是状态0，此时如果条件A（匹配到了txt的字符‘A‘），会到状态1，如果是条件B、C或其他的条件，还是状态0。如果经历了匹配ABABA之后到达状态5，再匹配C到达状态6，即停止状态，也就是匹配成功。
-
-3.很明显，dfa[][]是一个二维数组,dfa[&apos;A&apos;][3]就是在状态3时，下一个条件是A时，要跳转到哪一个状态。
-
-4.匹配的过程就是：不断的用txt的字符 + 当时的状态去dfa取值，直到状态6 or txt匹配到最后一个字符，结束。
-
-5.匹配过程中，txt的字符是一个一个往后取，不会回溯，只是状态一直在变化，即本次使用的是上一次匹配后的状态，不会回溯，正是KMP算法相对于暴力解法的优势。
-</code></pre><h2 id="DFA数组的构建"><a href="#DFA数组的构建" class="headerlink" title="DFA数组的构建"></a>DFA数组的构建</h2><hr>
-<p>上边的思路如果理解了，那么剩下的问题就是如何构建dfa[][]，当然这也是难点。dfa[][]的元素分为两类：1，匹配成功；2，匹配失败。</p>
-<p><strong>1.匹配成功</strong><br>初始可确定的状态为：<br>dfa[pat[0]][0] = 1;<br>即在状态0匹配到子串的第一个字符，到达状态1；<br>dfa[pat[1]][1] = dfa[pat[0]][0] + 1</p>
-<p><strong>2.匹配失败</strong><br>初始的第一列，即状态0时，匹配失败应该还是状态0，也就是除上述dfa[pat[0]][0] = 1外，其他都为状态0。<br>那么状态j时，匹配失败：（模拟回溯）<br>假设此时匹配到c = txt[i]，然后查找dfa找到跳转到哪个状态，那么txt[i-j…i-1]这部分与pat[0…j-1]这部分是匹配的。因为i-j为起始而整体不匹配，所以pat要右移一位，所以txt[i-j]舍弃了，不用比较了，也就是在状态j遇到条件c的要跳转的状态，txt[i-j+1 … i-1] == pat[1 … j-1]。<br>引入一个状态指示数组X，X[j]是指正确输入p[1…j-1]后进入的状态，输入p[1…j-1]c后进入的状态就是dfa[c][X[j]]（在X[j]状态时输入c），即dfa[c][j]=dfa[c][x[j]]。<br>X[j+1]为正确输入p[1…j]后进入的状态，即正确输入p[1…j-1]p[j]后进入的状态，也就是在X[j]状态时输入p[j]时进入的状态，就是dfa[pat.charAt[j]][X[j]]，即递推公式为：X[j+1]=dfa[pat.charAt[j]][X[j]]，而X[0]手动初始化为0。<br><strong><em>故有：</em></strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dfa[pat[0]][0] = 1;</span><br><span class="line">    int X = 0;</span><br><span class="line">    for (j = 1; j &lt; M; ++j)&#123;</span><br><span class="line">        for(i = 0; i &lt; R; ++i) &#123;</span><br><span class="line">            dfa[i][j] = dfa[i][X];</span><br><span class="line">        &#125;</span><br><span class="line">        dfa[pat[j]][j] = j + 1; //匹配成功</span><br><span class="line">        X = dfa[pat[j]][X]; //更新重启状态</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>附所有代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">int test_jp_search() &#123;</span><br><span class="line">    int index = jp_search(&quot;BCBAABACAABABACAA&quot;, &quot;ABABAC&quot;);</span><br><span class="line">    printf(&quot;%d\n&quot;, index);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int jp_search(char *txt, char *sub)</span><br><span class="line">&#123;</span><br><span class="line">    int M = (int)strlen(sub);</span><br><span class="line">    int R = 256;</span><br><span class="line">    //二维数组定义并初始化</span><br><span class="line">    int dfa[R][M];</span><br><span class="line">    int i = 0, j = 0;</span><br><span class="line">    for (i = 0; i &lt; R; ++i) &#123;</span><br><span class="line">        for (int j = 0; j &lt; M; ++j) &#123;</span><br><span class="line">            dfa[i][j] = 0;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    dfa[sub[0]][0] = 1;</span><br><span class="line">    int X = 0;</span><br><span class="line">    for (j = 1; j &lt; M; ++j)&#123;</span><br><span class="line">        for(i = 0; i &lt; R; ++i) &#123;</span><br><span class="line">            dfa[i][j] = dfa[i][X];</span><br><span class="line">        &#125;</span><br><span class="line">        dfa[sub[j]][j] = j + 1; //匹配成功</span><br><span class="line">        X = dfa[sub[j]][X]; //更新重启状态</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    int N = (int)strlen(txt);</span><br><span class="line">    for (i = 0, j = 0; i &lt; N &amp;&amp; j &lt; M; ++i)&#123;</span><br><span class="line">        j = dfa[txt[i]][j];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    if (j == M) &#123;</span><br><span class="line">        return i - M;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return M;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>ps：感觉还是有点乱，回头再整理一下思路</p>
-<p>参考：<br>1.《算法》第四版<br>2.<a href="http://book.douban.com/subject/19952400/discussion/59623403/" target="_blank" rel="noopener">链接</a></p>
-
-          
+2.未匹配是状态0，此时如果条件A（匹配到了txt的字
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/19/blogKMPDFA/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1674,9 +1660,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-10T21:58:06+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-10T21:58:06+08:00">
                 2017-03-10
               </time>
             
@@ -1695,7 +1681,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1738,27 +1724,17 @@
       
         
           
-            <p>一闲下来就不务正业了，写个爬虫，听段子。<br>额，mac自带的语音朗读，windows我就不知道啦，有兴趣的可以去研究一下哈。</p>
-<p><strong>环境</strong><br>python 2.7<br>mac os 10.12</p>
-<p><strong>使用</strong><br><a href="https://github.com/WeiJP/PachongQiuShiBaiKe#pachongqiushibaike" target="_blank" rel="noopener">下载</a>代码，是一个.py的文本文件，打开终端，在这个文件所属的目录下输入<code>python xxxxxx.py</code>即可，根据提示进行选择</p>
-<p><strong>朗读的代码</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from subprocess import call</span><br><span class="line">call([&apos;say&apos;, &apos;hello pengge&apos;])</span><br></pre></td></tr></table></figure>
-<p>当然了，听起来并不是很顺耳，不过我听了好一会儿之后就习惯了，有种暴走漫画的感觉 = =!</p>
-<p><strong>抓取数据</strong></p>
-<p>使用了urllib2，添加一个header就可以啦<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 抓取某一页全部的数据</span><br><span class="line">try:</span><br><span class="line">	url = &apos;http://www.qiushibaike.com/hot/page/&apos; + str(pageIndex)</span><br><span class="line">	user_agent = &apos;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_0)&apos;</span><br><span class="line">	headers = &#123; &apos;User-Agent&apos; : user_agent &#125;</span><br><span class="line">	request = urllib2.Request(url, headers = headers)</span><br><span class="line">	response = urllib2.urlopen(request)</span><br><span class="line">	return response.read().decode(&apos;utf-8&apos;)</span><br><span class="line">except urllib2.URLError, e:</span><br><span class="line">	if hasattr(e,&quot;reason&quot;):</span><br><span class="line">		print &apos;--------------------------&apos;</span><br><span class="line">		print u&quot;连接糗事百科失败,错误原因：\n&quot;,e.reason</span><br><span class="line">		print &apos;--------------------------&apos;</span><br><span class="line">        return None</span><br></pre></td></tr></table></figure></p>
-<p><strong>解析数据</strong><br>主要用到了正则表达式去匹配想要的内容，苦逼的是网页一改版，之前写的正则表达式可能就不能用了，然后导致爬取失败，此时应该使用curl+z停止爬虫程序，重新编写正则表达式。<br>同样作用的正则表达式并不一定唯一，只要能正确匹配出来就好，下面是2017.03.10的正则表达式，个人亲测应该没问题，如果有问题欢迎留言，我看到会改的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pattern = re.compile(&apos;&lt;div.*?author clearfix&quot;&gt;.*?&lt;a href.*?&lt;h2&gt;(.*?)&lt;/h2&gt;.*?&lt;div.*?content&quot;&gt;.*?&lt;span&gt;(.*?)&lt;/span&gt;.*?&lt;/a&gt;(.*?)&lt;div class=&quot;stats.*?class=&quot;number&quot;&gt;(.*?)&lt;/i&gt;&apos;,re.S)</span><br></pre></td></tr></table></figure>
-<p>匹配出了 0：作者，1：文字内容，2：图片，3：点赞数</p>
-<p><strong>程序开始时选择选项</strong><br>选择是展示还是朗读，展示要每次按键，展示一条，朗读则是自动，一条一条无限朗读，好在朗读是个同步的方法，省去自己好多时间</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">print &apos;抓取糗事百科，Q退出&apos;</span><br><span class="line">		print &apos;需要自动朗读吗？Y／N&apos;</span><br><span class="line">		while True:</span><br><span class="line">			input = raw_input()</span><br><span class="line">			if input == &quot;Y&quot; or input == &quot;y&quot;:</span><br><span class="line">				self.voice = True</span><br><span class="line">				print &apos;已经选择自动朗读，curl + z 退出&apos;</span><br><span class="line">				break;</span><br><span class="line">			elif input == &quot;N&quot; or input == &quot;n&quot;:</span><br><span class="line">				self.voice = False</span><br><span class="line">				break;</span><br><span class="line">			else:</span><br><span class="line">				print &apos;只能输入 Y/N&apos;</span><br><span class="line"></span><br><span class="line">		self.stop = False</span><br><span class="line">		self.getNewPage()</span><br><span class="line">		self.showStory()</span><br></pre></td></tr></table></figure>
-<p><strong>结束语</strong></p>
-<ol>
-<li><a href="https://github.com/WeiJP/PachongQiuShiBaiKe#pachongqiushibaike" target="_blank" rel="noopener">点击下载源代码</a></li>
-<li>欢迎高手指点评论，求老司机带我飞！</li>
-<li>本来是想爬点老司机论坛的，最近开两会，万一被抓了，搞个传播xx罪就太亏了</li>
-</ol>
-
-          
+          一闲下来就不务正业了，写个爬虫，听段子。额，mac自带的语音朗读，windows我就不知道啦，有兴趣的可以去研究一下哈。
+环境python 2.7mac os 10.12
+使用下载代码，是一个.py的文本文件，打开终端，在这个文件所属的目录下输入python xxxxxx.py即可，根据提示进行选择
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/10/blogQSBKPython/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1843,7 +1819,7 @@
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
                 <span class="site-state-item-count">25</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-name">日志</span>
               </a>
             </div>
           
@@ -1854,7 +1830,7 @@
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
                 <span class="site-state-item-count">8</span>
-                <span class="site-state-item-name">categories</span>
+                <span class="site-state-item-name">分类</span>
               </a>
             </div>
           
@@ -1865,7 +1841,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
                 <span class="site-state-item-count">26</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-name">标签</span>
               </a>
             </div>
           
@@ -1950,11 +1926,11 @@
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
-  Theme -
+  主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Pisces
   </a>
